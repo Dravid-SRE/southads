@@ -199,22 +199,35 @@ nav.sh{box-shadow:0 6px 32px rgba(0,0,0,.1)}
 .aptdot{width:26px;height:26px;border-radius:8px;background:rgba(255,92,0,.1);display:flex;align-items:center;justify-content:center;font-size:.72rem;flex-shrink:0}
 .vals{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:4rem}
 
-/* ═══ CONTACT ═══ */
+/* ═══ CONTACT / WHATSAPP ═══ */
 .cwrap{background:var(--dark);border-radius:28px;padding:4rem;max-width:1200px;margin:0 auto;position:relative;overflow:hidden}
-.cwrap::before{content:'';position:absolute;top:-180px;left:-180px;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,rgba(106,31,255,.13),transparent 70%);pointer-events:none}
+.cwrap::before{content:'';position:absolute;top:-180px;left:-180px;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,rgba(37,211,102,.13),transparent 70%);pointer-events:none}
 .cwrap::after{content:'';position:absolute;bottom:-140px;right:-90px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(232,48,106,.1),transparent 70%);pointer-events:none}
 .cgrid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;position:relative;z-index:1}
-.cform{display:flex;flex-direction:column;gap:.85rem}
-.crow{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
-.cgrp{display:flex;flex-direction:column;gap:.32rem}
-.clbl{font-size:.65rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.25)}
-.cinp{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:11px;padding:.82rem 1rem;font-size:.88rem;color:#fff;font-family:'Satoshi',sans-serif;outline:none;transition:border-color .2s;width:100%}
-.cinp:focus{border-color:rgba(255,92,0,.42)}
-.cinp::placeholder{color:rgba(255,255,255,.17)}
-textarea.cinp{min-height:115px;resize:vertical}
-.bsend{background:var(--orange);color:#fff;border:none;cursor:pointer;font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:.88rem;letter-spacing:.03em;padding:.95rem 2.2rem;border-radius:100px;transition:all .2s;align-self:flex-start}
-.bsend:hover{background:var(--orange2);transform:translateY(-2px);box-shadow:0 7px 26px rgba(255,92,0,.36)}
-.csuc{display:none;background:rgba(159,217,48,.08);border:1px solid rgba(159,217,48,.2);border-radius:14px;padding:1.8rem;text-align:center;color:var(--lime);font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:1rem}
+/* WhatsApp chat card */
+.wa-card{background:rgba(255,255,255,.04);border:1px solid rgba(37,211,102,.18);border-radius:22px;padding:2rem;display:flex;flex-direction:column;gap:1.4rem}
+.wa-header{display:flex;align-items:center;gap:1rem}
+.wa-avatar{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#25d366,#128c7e);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;box-shadow:0 4px 18px rgba(37,211,102,.3)}
+.wa-info .wa-name{font-family:'Cabinet Grotesk',sans-serif;font-weight:900;color:#fff;font-size:1rem}
+.wa-info .wa-status{font-size:.72rem;color:#25d366;display:flex;align-items:center;gap:.35rem;margin-top:.18rem}
+.wa-dot{width:7px;height:7px;border-radius:50%;background:#25d366;animation:blink 1.3s infinite}
+.wa-bubble-wrap{background:rgba(0,0,0,.25);border-radius:14px;padding:1.2rem 1.2rem 1rem;display:flex;flex-direction:column;gap:.7rem}
+.wa-bubble{background:#1f2c34;border-radius:0 12px 12px 12px;padding:.75rem 1rem;font-size:.84rem;color:rgba(255,255,255,.78);line-height:1.6;max-width:88%;position:relative}
+.wa-bubble::before{content:'';position:absolute;top:0;left:-7px;border-width:0 8px 8px 0;border-style:solid;border-color:transparent #1f2c34 transparent transparent}
+.wa-time{font-size:.62rem;color:rgba(255,255,255,.25);text-align:right;margin-top:.3rem}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:.75rem;background:#25d366;color:#fff;text-decoration:none;font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:1rem;padding:1.05rem 2rem;border-radius:100px;transition:all .25s;box-shadow:0 6px 24px rgba(37,211,102,.35)}
+.wa-btn:hover{background:#20c05a;transform:translateY(-3px);box-shadow:0 10px 32px rgba(37,211,102,.45)}
+.wa-btn svg{width:22px;height:22px;fill:#fff;flex-shrink:0}
+.wa-note{font-size:.72rem;color:rgba(255,255,255,.2);text-align:center}
+/* Floating WhatsApp button */
+.wa-float{position:fixed;bottom:1.8rem;right:1.8rem;z-index:800;display:flex;flex-direction:column;align-items:flex-end;gap:.6rem}
+.wa-float-btn{width:60px;height:60px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 28px rgba(37,211,102,.45);cursor:pointer;transition:all .25s;text-decoration:none;border:none;position:relative}
+.wa-float-btn:hover{transform:scale(1.1);box-shadow:0 10px 36px rgba(37,211,102,.55)}
+.wa-float-btn svg{width:30px;height:30px;fill:#fff}
+.wa-float-pulse{position:absolute;inset:0;border-radius:50%;background:rgba(37,211,102,.4);animation:wapulse 2s ease-out infinite}
+@keyframes wapulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.9);opacity:0}}
+.wa-float-tooltip{background:var(--dark);color:#fff;font-family:'Cabinet Grotesk',sans-serif;font-weight:700;font-size:.78rem;padding:.45rem 1rem;border-radius:100px;white-space:nowrap;box-shadow:0 4px 16px rgba(0,0,0,.3);opacity:0;transform:translateX(8px);transition:all .2s;pointer-events:none;border:1px solid rgba(255,255,255,.08)}
+.wa-float:hover .wa-float-tooltip{opacity:1;transform:translateX(0)}
 
 /* FOOTER */
 footer{background:var(--dark);padding:4rem 5% 2rem}
@@ -302,7 +315,7 @@ footer{background:var(--dark);padding:4rem 5% 2rem}
     <li><a href="#" onclick="go('about',event)" id="l-about">About</a></li>
     <li><a href="#" onclick="go('contact',event)" id="l-contact">Contact</a></li>
   </ul>
-  <a class="npill" href="#" onclick="go('contact',event)">Get a Quote →</a>
+  <a class="npill" href="https://wa.me/916380806930?text=Hi%20South%20Ads!%20I%27m%20interested%20in%20your%20advertising%20services." target="_blank" rel="noopener">Get a Quote →</a>
   <button class="hbtn" id="hbtn" onclick="toggleMob()"><span></span><span></span><span></span></button>
 </nav>
 
@@ -567,7 +580,7 @@ footer{background:var(--dark);padding:4rem 5% 2rem}
         </ul>
         <div style="margin-top:2.5rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.07)">
           <div style="font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:.5rem">Email us directly</div>
-          <a href="mailto:hello@southads.com" style="color:var(--orange);text-decoration:none;font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:1.1rem">hello@southads.com</a>
+          <a href="/cdn-cgi/l/email-protection#b8d0ddd4d4d7f8cbd7cdccd0d9dccb96dbd7d5" style="color:var(--orange);text-decoration:none;font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:1.1rem"><span class="__cf_email__" data-cfemail="deb6bbb2b2b19eadb1abaab6bfbaadf0bdb1b3">[email&#160;protected]</span></a>
         </div>
         <div style="margin-top:1.2rem">
           <div style="font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:.4rem">Headquartered in</div>
@@ -575,49 +588,39 @@ footer{background:var(--dark);padding:4rem 5% 2rem}
         </div>
       </div>
       <div>
-        <form class="cform" id="cf" onsubmit="sf(event)">
-          <div class="crow">
-            <div class="cgrp"><label class="clbl">Your Name</label><input class="cinp" placeholder="Ramesh Kumar" required/></div>
-            <div class="cgrp"><label class="clbl">Email Address</label><input class="cinp" type="email" placeholder="ramesh@brand.com" required/></div>
+        <div class="wa-card">
+          <div class="wa-header">
+            <div class="wa-avatar">💬</div>
+            <div class="wa-info">
+              <div class="wa-name">South Ads Team</div>
+              <div class="wa-status"><span class="wa-dot"></span>Typically replies within minutes</div>
+            </div>
           </div>
-          <div class="crow">
-            <div class="cgrp"><label class="clbl">Phone</label><input class="cinp" placeholder="+91 98765 43210"/></div>
-            <div class="cgrp"><label class="clbl">Company / Brand</label><input class="cinp" placeholder="Your Brand Name"/></div>
+          <div class="wa-bubble-wrap">
+            <div class="wa-bubble">
+              👋 Hi there! Looking to grow your brand with outdoor advertising?<br>Drop us a message and we'll get back to you with a tailored strategy — fast.
+              <div class="wa-time">South Ads · now</div>
+            </div>
           </div>
-          <div class="cgrp"><label class="clbl">Service Required</label>
-            <select class="cinp">
-              <option value="" style="background:#1c1814">Select a service...</option>
-              <option style="background:#1c1814">Outdoor Advertising (Hoardings / Billboards)</option>
-              <option style="background:#1c1814">Brand Activation</option>
-              <option style="background:#1c1814">Event Management</option>
-              <option style="background:#1c1814">Integrated Promotion Campaign</option>
-              <option style="background:#1c1814">Transit &amp; Mobile Media</option>
-              <option style="background:#1c1814">Retail &amp; In-Shop Branding</option>
-              <option style="background:#1c1814">LED &amp; Digital Signage</option>
-              <option style="background:#1c1814">Creative &amp; Design Studio</option>
-              <option style="background:#1c1814">Media Planning &amp; Buying</option>
-              <option style="background:#1c1814">360° Full Campaign</option>
-            </select>
-          </div>
-          <div class="cgrp"><label class="clbl">Campaign Geography</label>
-            <select class="cinp">
-              <option value="" style="background:#1c1814">Select reach...</option>
-              <option style="background:#1c1814">Single City</option>
-              <option style="background:#1c1814">State-wide</option>
-              <option style="background:#1c1814">Regional (2–5 Cities)</option>
-              <option style="background:#1c1814">Pan-India</option>
-            </select>
-          </div>
-          <div class="cgrp"><label class="clbl">Tell us about your campaign objectives</label>
-            <textarea class="cinp" placeholder="What are you trying to achieve? Target audience, geography, timeline — anything helps..."></textarea>
-          </div>
-          <button type="submit" class="bsend">Send Enquiry →</button>
-        </form>
-        <div class="csuc" id="cs">✓ Enquiry received!<br><span style="font-weight:400;font-size:.85rem;color:rgba(159,217,48,.6)">Our team will be in touch within 24 hours.</span></div>
+          <a class="wa-btn" href="https://wa.me/916380806930?text=Hi%20South%20Ads!%20I%27m%20interested%20in%20your%20advertising%20services." target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Chat on WhatsApp
+          </a>
+          <p class="wa-note">Opens WhatsApp on your phone or web — no app install needed</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
+</div>
+
+<!-- FLOATING WHATSAPP BUTTON -->
+<div class="wa-float">
+  <span class="wa-float-tooltip">Chat with us on WhatsApp</span>
+  <a class="wa-float-btn" href="https://wa.me/916380806930?text=Hi%20South%20Ads!%20I%27m%20interested%20in%20your%20advertising%20services." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <span class="wa-float-pulse"></span>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
 </div>
 
 <!-- FOOTER -->
@@ -631,13 +634,14 @@ footer{background:var(--dark);padding:4rem 5% 2rem}
       </div>
       <div class="fcol"><h4>Navigate</h4><a href="#" onclick="go('home',event)">Home</a><a href="#" onclick="go('services',event)">Services</a><a href="#" onclick="go('works',event)">Our Work</a><a href="#" onclick="go('about',event)">About Us</a><a href="#" onclick="go('contact',event)">Contact</a></div>
       <div class="fcol"><h4>Services</h4><a href="#" onclick="go('services',event)">Outdoor Advertising</a><a href="#" onclick="go('services',event)">Brand Activation</a><a href="#" onclick="go('services',event)">Event Management</a><a href="#" onclick="go('services',event)">Transit Media</a><a href="#" onclick="go('services',event)">Media Planning</a></div>
-      <div class="fcol"><h4>Connect</h4><a href="#">Instagram</a><a href="#">LinkedIn</a><a href="#">Facebook</a><a href="mailto:hello@southads.com">hello@southads.com</a><a href="tel:+919876543210">+91 98765 43210</a></div>
+      <div class="fcol"><h4>Connect</h4><a href="/cdn-cgi/l/email-protection#0b636e6767644b78647e7f636a6f7825686466"><span class="__cf_email__" data-cfemail="90f8f5fcfcffd0e3ffe5e4f8f1f4e3bef3fffd">[email&#160;protected]</span></a><a href="https://wa.me/916380806930" target="_blank" rel="noopener">+91 63808 06930 (WhatsApp)</a></div>
     </div>
     <div class="fbot"><span>© 2025 South Ads. All rights reserved. | India's Premier Advertising Company</span><span>Made with 🔥 in Chennai</span></div>
   </div>
 </footer>
 
 <script>
+
 // CURSOR
 const c1=document.getElementById('cur'),c2=document.getElementById('cur2');
 let mx=0,my=0,rx=0,ry=0;
@@ -689,23 +693,18 @@ function fw(cat,btn){
   document.querySelectorAll('.wc').forEach(c=>{c.style.display=cat==='all'||c.dataset.cat===cat?'block':'none'});
 }
 
-// FORM
-function sf(e){e.preventDefault();document.getElementById('cf').style.display='none';document.getElementById('cs').style.display='block'}
-
 // HAMBURGER
 function toggleMob(){
   const m=document.getElementById('mobMenu'),b=document.getElementById('hbtn');
   m.classList.toggle('open');b.classList.toggle('open');
   document.body.style.overflow=m.classList.contains('open')?'hidden':'';
 }
-function closeMob(){
-  document.getElementById('mobMenu').classList.remove('open');
-  document.getElementById('hbtn').classList.remove('open');
-  document.body.style.overflow='';
-}
 
-// INIT
-setTimeout(rev,250);setTimeout(cnt,450);
+// INIT — show home page on load
+document.addEventListener('DOMContentLoaded',()=>{
+  go('home');
+  setTimeout(cnt,400);
+});
 </script>
 </body>
 </html>
