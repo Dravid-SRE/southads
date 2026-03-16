@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>South Ads — India's Premier Advertising Company</title>
+<link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Satoshi:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#faf7f2;--warm:#f5ede0;--paper:#fff;
+  --orange:#ff5c00;--orange2:#ff8342;
+  --pink:#e8306a;--purple:#6a1fff;--cyan:#00c8e8;--lime:#9fd930;
+  --dark:#0e0c0a;--mid:#1c1814;
+  --text:#241e16;--muted:#8a7a6a;--border:rgba(36,30,22,.1);
+}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--text);font-family:'Satoshi',sans-serif;overflow-x:hidden;cursor:none}
+
+/* CURSOR */
+#cur{position:fixed;width:10px;height:10px;border-radius:50%;background:var(--orange);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .22s,height .22s}
+#cur2{position:fixed;width:30px;height:30px;border-radius:50%;border:1.5px solid rgba(255,92,0,.5);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .1s}
+
+/* NAV */
+nav{position:fixed;top:1rem;left:50%;transform:translateX(-50%);z-index:700;display:flex;align-items:center;gap:1.5rem;background:rgba(250,247,242,.9);backdrop-filter:blur(24px);border:1px solid rgba(36,30,22,.12);border-radius:100px;padding:.6rem 1rem .6rem 1.6rem;transition:box-shadow .3s;white-space:nowrap}
+nav.sh{box-shadow:0 6px 32px rgba(0,0,0,.1)}
+.logo{font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:1.1rem;color:var(--text);text-decoration:none}
+.logo b{color:var(--orange)}
+.nl{display:flex;list-style:none}
+.nl a{color:var(--muted);text-decoration:none;font-size:.78rem;font-weight:500;padding:.4rem .85rem;border-radius:100px;transition:all .2s}
+.nl a:hover,.nl a.on{color:var(--text);background:rgba(36,30,22,.07)}
+.npill{background:var(--orange);color:#fff;font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:.76rem;padding:.55rem 1.3rem;border-radius:100px;text-decoration:none;transition:all .2s}
+.npill:hover{background:var(--orange2);transform:scale(1.04)}
+/* hamburger */
+.hbtn{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
+.hbtn span{display:block;width:20px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
+.hbtn.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hbtn.open span:nth-child(2){opacity:0}
+.hbtn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+/* mob menu */
+.mob-menu{display:none;position:fixed;inset:0;background:rgba(250,247,242,.97);backdrop-filter:blur(20px);z-index:690;flex-direction:column;align-items:center;justify-content:center;gap:.3rem}
+.mob-menu.open{display:flex}
+.mob-menu a{font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:2.2rem;color:rgba(36,30,22,.55);text-decoration:none;padding:.6rem 2rem;transition:color .2s;letter-spacing:-.03em}
+.mob-menu a:hover{color:var(--orange)}
+.mob-pill{background:var(--orange);color:#fff !important;font-size:1rem !important;padding:.9rem 2.5rem !important;border-radius:100px;margin-top:1rem}
+
+/* PAGES */
+.pg{display:none;min-height:100vh}
+.pg.active{display:block}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .6s,transform .6s}
+.rv.on{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+/* SHARED */
+.sec{padding:6rem 5%}
+.sw{max-width:1200px;margin:0 auto}
+.slbl{display:inline-flex;align-items:center;gap:.45rem;font-size:.67rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);margin-bottom:.7rem}
+.stitle{font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:clamp(2rem,4vw,3.8rem);line-height:1;letter-spacing:-.04em;color:var(--text);margin-bottom:1rem}
+.ssub{font-size:.97rem;color:var(--muted);line-height:1.78;max-width:520px}
+.btn-or{background:var(--orange);color:#fff;font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:.86rem;text-decoration:none;padding:.95rem 2.2rem;border-radius:100px;display:inline-block;transition:all .2s;box-shadow:0 4px 20px rgba(255,92,0,.28)}
+.btn-or:hover{background:var(--orange2);transform:translateY(-3px);box-shadow:0 8px 32px rgba(255,92,0,.38)}
+.btn-lt{color:var(--text);font-weight:600;font-size:.86rem;text-decoration:none;border-bottom:1.5px solid transparent;transition:border-color .2s;display:inline-flex;align-items:center;gap:.35rem}
+.btn-lt:hover{border-color:var(--orange)}
+
+/* ═══ HERO ═══ */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:7rem 5% 4rem;position:relative;overflow:hidden;text-align:center;background:var(--cream)}
+.hb1{position:absolute;top:-180px;right:-120px;width:650px;height:650px;border-radius:50%;background:radial-gradient(circle,rgba(255,92,0,.15),transparent 70%);animation:hba 12s ease-in-out infinite alternate;pointer-events:none}
+.hb2{position:absolute;bottom:-120px;left:-80px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(106,31,255,.11),transparent 70%);animation:hbb 15s ease-in-out infinite alternate;pointer-events:none}
+.hb3{position:absolute;top:45%;left:25%;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(232,48,106,.07),transparent 70%);animation:hbc 10s ease-in-out infinite alternate;pointer-events:none}
+@keyframes hba{from{transform:translate(0,0) scale(1)}to{transform:translate(-50px,70px) scale(1.12)}}
+@keyframes hbb{from{transform:translate(0,0)}to{transform:translate(50px,-50px) scale(1.18)}}
+@keyframes hbc{from{transform:translate(0,0)}to{transform:translate(-30px,30px) scale(.9)}}
+.gridbg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,92,0,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,92,0,.03) 1px,transparent 1px);background-size:55px 55px;mask-image:radial-gradient(ellipse 75% 65% at 50% 50%,black 30%,transparent 100%);pointer-events:none}
+.h-eye{display:inline-flex;align-items:center;gap:.55rem;background:var(--dark);color:var(--lime);font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:.4rem 1.1rem;border-radius:100px;margin-bottom:1.8rem;animation:fu .7s .1s both;position:relative;z-index:1}
+.hpulse{width:7px;height:7px;border-radius:50%;background:var(--lime);animation:blink 1.3s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.h-title{font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:clamp(3.2rem,8.5vw,8rem);line-height:.92;letter-spacing:-.045em;color:var(--text);animation:fu .85s .22s both;position:relative;z-index:1}
+.h-title .line2{display:block;color:transparent;-webkit-text-stroke:2px var(--orange);font-style:italic}
+.h-title .gr{background:linear-gradient(100deg,var(--orange),var(--pink),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.h-sub{font-size:clamp(.97rem,1.4vw,1.15rem);color:var(--muted);max-width:490px;margin:1.5rem auto 2.5rem;line-height:1.78;animation:fu .85s .38s both;position:relative;z-index:1}
+.h-ctas{display:flex;gap:1rem;align-items:center;justify-content:center;animation:fu .85s .52s both;position:relative;z-index:1;flex-wrap:wrap}
+.chip{position:absolute;background:var(--paper);border:1px solid var(--border);border-radius:14px;padding:.65rem 1.1rem;box-shadow:0 6px 22px rgba(0,0,0,.07);font-size:.75rem;font-weight:600;color:var(--text);display:flex;align-items:center;gap:.45rem;animation:chipfl 4s ease-in-out infinite;z-index:1}
+.cdot{width:7px;height:7px;border-radius:50%}
+@keyframes chipfl{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.scue{margin-top:3.5rem;display:flex;flex-direction:column;align-items:center;animation:fu .85s .9s both;position:relative;z-index:1}
+.sw2{width:24px;height:38px;border:1.5px solid rgba(36,30,22,.22);border-radius:20px;display:flex;align-items:flex-start;justify-content:center;padding-top:5px}
+.sd{width:4px;height:7px;background:var(--orange);border-radius:2px;animation:sdrop 1.8s ease-in-out infinite}
+@keyframes sdrop{0%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(13px)}}
+@keyframes fu{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* TICKER */
+.ticker{overflow:hidden;background:var(--dark);padding:.85rem 0;border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04)}
+.ttrack{display:flex;animation:tk 26s linear infinite;white-space:nowrap}
+.titem{display:flex;align-items:center;gap:.9rem;padding:0 1.8rem;font-family:'Cabinet Grotesk',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.28);flex-shrink:0}
+.tstar{color:var(--orange)}
+@keyframes tk{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* STATS BAND */
+.sband{background:var(--orange);padding:3.5rem 5%;position:relative;overflow:hidden}
+.sband::before{content:'360° ADVERTISING ★ ';position:absolute;top:50%;transform:translateY(-50%);font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:4rem;color:rgba(255,255,255,.07);white-space:nowrap;letter-spacing:.06em;pointer-events:none}
+.sgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;max-width:1100px;margin:0 auto;position:relative}
+.sitem{text-align:center}
+.sitem .n{font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:clamp(2.4rem,4vw,3.8rem);color:#fff;line-height:1;letter-spacing:-.04em;display:block}
+.sitem .l{font-size:.73rem;color:rgba(255,255,255,.58);letter-spacing:.1em;text-transform:uppercase;margin-top:.35rem;font-weight:600}
+
+/* BRAND SCROLLER */
+.bscroll{overflow:hidden;padding:3rem 0;background:var(--warm)}
+.brow{display:flex;gap:1rem;animation:bsc 28s linear infinite;width:max-content}
+.bpill{background:var(--paper);border:1px solid var(--border);border-radius:14px;padding:1.1rem 1.8rem;display:flex;align-items:center;gap:.9rem;flex-shrink:0;transition:border-color .3s}
+.bpill:hover{border-color:var(--orange)}
+.bava{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:.85rem}
+.bname{font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:.88rem;color:var(--text)}
+.bind{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+@keyframes bsc{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* TESTIMONIALS */
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.tc{background:var(--paper);border:1px solid var(--border);border-radius:22px;padding:1.8rem;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s}
+.tc:hover{transform:translateY(-4px);box-shadow:0 18px 45px rgba(0,0,0,.07)}
+.tc.feat{background:var(--dark);border-color:transparent}
+.tstars{color:var(--orange);font-size:.85rem;letter-spacing:.05em;margin-bottom:1.1rem}
+.tc.feat .tstars{color:var(--lime)}
+.tq{font-size:.9rem;line-height:1.72;color:var(--text);margin-bottom:1.4rem}
+.tc.feat .tq{color:rgba(255,255,255,.72)}
+.tauth{display:flex;align-items:center;gap:.75rem}
+.tava{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:.82rem}
+.tname{font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:.88rem;color:var(--text)}
+.tc.feat .tname{color:#fff}
+.trole{font-size:.7rem;color:var(--muted)}
+.tc.feat .trole{color:rgba(255,255,255,.32)}
+.tbg{position:absolute;bottom:-12px;right:-4px;font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:5rem;color:rgba(0,0,0,.035);pointer-events:none;line-height:1}
+.tc.feat .tbg{color:rgba(255,255,255,.035)}
+
+/* CTA STRIP */
+.cstrip{padding:5.5rem 5%;background:var(--dark);text-align:center}
+.cstrip h2{font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:clamp(2rem,4vw,3.5rem);color:#fff;letter-spacing:-.04em;line-height:1.05;margin-bottom:1.8rem}
+.cstrip h2 em{color:var(--orange);font-style:italic}
+
+/* ═══ SERVICES BENTO ═══ */
+.bento{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:minmax(175px,auto);gap:1rem;max-width:1200px;margin:0 auto}
+.bc{background:var(--paper);border:1px solid var(--border);border-radius:22px;padding:2rem;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s,border-color .3s}
+.bc:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(0,0,0,.07);border-color:rgba(255,92,0,.2)}
+.c1{grid-column:span 5;grid-row:span 2}.c2{grid-column:span 4}.c3{grid-column:span 3}
+.c4{grid-column:span 8}.c5{grid-column:span 4}.c6{grid-column:span 4}.c7{grid-column:span 4}.c8{grid-column:span 4}
+.c9{grid-column:span 6}.c10{grid-column:span 6}.c11{grid-column:span 4}
+.cnum{font-family:'Cabinet Grotesk',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.15em;color:var(--muted);margin-bottom:1.4rem}
+.cico{width:48px;height:48px;border-radius:13px;display:flex;align-items:center;justify-content:center;margin-bottom:1.1rem;font-size:1.3rem}
+.cname{font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:1.15rem;color:var(--text);margin-bottom:.45rem;letter-spacing:-.02em;line-height:1.15}
+.cdesc{font-size:.83rem;color:var(--muted);line-height:1.65}
+.ctag{position:absolute;bottom:1.4rem;right:1.4rem;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.28rem .8rem;border-radius:100px}
+.bignum{font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:7rem;line-height:1;color:transparent;-webkit-text-stroke:1.5px rgba(255,92,0,.12);position:absolute;bottom:-12px;right:-4px;pointer-events:none;letter-spacing:-.05em}
+
+/* ═══ WORKS ═══ */
+.wfilter{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.fb{background:transparent;border:1px solid var(--border);font-family:'Satoshi',sans-serif;font-size:.78rem;font-weight:500;color:var(--muted);padding:.48rem 1.1rem;border-radius:100px;cursor:pointer;transition:all .2s}
+.fb.on,.fb:hover{background:var(--dark);color:#fff;border-color:var(--dark)}
+.wgrid{display:grid;grid-template-columns:repeat(12,1fr);gap:1rem}
+.wc{border-radius:22px;overflow:hidden;position:relative;background:var(--mid);cursor:default;transition:transform .4s}
+.wc:hover{transform:scale(1.012)}
+.wbig{grid-column:span 7;height:450px}
+.wsm{grid-column:span 5;height:450px}
+.wmid{grid-column:span 6;height:300px}
+.wbg{position:absolute;inset:0;transition:transform .6s}
+.wc:hover .wbg{transform:scale(1.05)}
+.wov{position:absolute;inset:0;background:linear-gradient(to top,rgba(14,12,10,.9),transparent 55%)}
+.winfo{position:absolute;bottom:0;left:0;right:0;padding:1.8rem}
+.wcat{font-size:.63rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:.35rem}
+.wname{font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:1.3rem;color:#fff;letter-spacing:-.02em;line-height:1.1;margin-bottom:.3rem}
+.wmeta{font-size:.73rem;color:rgba(255,255,255,.38)}
+.warr{position:absolute;top:1.4rem;right:1.4rem;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;color:#fff;opacity:0;transform:scale(.8);transition:opacity .3s,transform .3s}
+.wc:hover .warr{opacity:1;transform:scale(1)}
+.rbadge{position:absolute;top:1.4rem;left:1.4rem;background:var(--lime);color:var(--dark);font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:.7rem;padding:.28rem .8rem;border-radius:100px}
+.vw1{background:linear-gradient(135deg,#1a0800,#3d1500,#5c2200)}
+.vw2{background:linear-gradient(135deg,#000a1f,#001540,#002060)}
+.vw3{background:linear-gradient(135deg,#0e0018,#1c0030,#2c0050)}
+.vw4{background:linear-gradient(135deg,#001800,#002f00,#004500)}
+.mpwrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.mp{width:98px;height:186px;background:rgba(255,255,255,.07);border-radius:18px;border:1.5px solid rgba(255,255,255,.12);padding:9px;box-shadow:0 18px 48px rgba(0,0,0,.5)}
+.mpn{width:36px;height:4px;background:rgba(255,255,255,.14);border-radius:2px;margin:0 auto 7px}
+.mpb{height:4px;border-radius:2px;margin-bottom:5px}
+.mpcard{height:48px;border-radius:9px;background:rgba(255,255,255,.05);margin-bottom:5px;border:1px solid rgba(255,255,255,.07)}
+.mpline{height:3px;border-radius:2px;background:rgba(255,255,255,.1);margin-bottom:4px}
+
+/* ═══ ABOUT ═══ */
+.agrid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.avis{background:var(--dark);border-radius:28px;padding:2.8rem;position:relative;overflow:hidden}
+.avis::before{content:'';position:absolute;top:-100px;right:-100px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(255,92,0,.17),transparent 70%);pointer-events:none}
+.av4{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.06);border-radius:14px;overflow:hidden}
+.avb{background:var(--mid);padding:1.4rem;transition:background .2s}
+.avb:hover{background:#252018}
+.avb .n{font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:2rem;color:var(--orange);line-height:1;letter-spacing:-.04em}
+.avb .l{font-size:.68rem;color:rgba(255,255,255,.28);text-transform:uppercase;letter-spacing:.1em;margin-top:.25rem}
+.abadges{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.8rem}
+.abadge{background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);font-size:.72rem;font-weight:600;padding:.35rem .9rem;border-radius:100px;border:1px solid rgba(255,255,255,.08)}
+.apts{list-style:none;margin-top:1.4rem;display:flex;flex-direction:column;gap:.75rem}
+.apts li{display:flex;align-items:center;gap:.7rem;font-size:.9rem;color:var(--muted)}
+.aptdot{width:26px;height:26px;border-radius:8px;background:rgba(255,92,0,.1);display:flex;align-items:center;justify-content:center;font-size:.72rem;flex-shrink:0}
+.vals{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:4rem}
+
+/* ═══ CONTACT ═══ */
+.cwrap{background:var(--dark);border-radius:28px;padding:4rem;max-width:1200px;margin:0 auto;position:relative;overflow:hidden}
+.cwrap::before{content:'';position:absolute;top:-180px;left:-180px;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,rgba(106,31,255,.13),transparent 70%);pointer-events:none}
+.cwrap::after{content:'';position:absolute;bottom:-140px;right:-90px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(232,48,106,.1),transparent 70%);pointer-events:none}
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;position:relative;z-index:1}
+.cform{display:flex;flex-direction:column;gap:.85rem}
+.crow{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+.cgrp{display:flex;flex-direction:column;gap:.32rem}
+.clbl{font-size:.65rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.25)}
+.cinp{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:11px;padding:.82rem 1rem;font-size:.88rem;color:#fff;font-family:'Satoshi',sans-serif;outline:none;transition:border-color .2s;width:100%}
+.cinp:focus{border-color:rgba(255,92,0,.42)}
+.cinp::placeholder{color:rgba(255,255,255,.17)}
+textarea.cinp{min-height:115px;resize:vertical}
+.bsend{background:var(--orange);color:#fff;border:none;cursor:pointer;font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:.88rem;letter-spacing:.03em;padding:.95rem 2.2rem;border-radius:100px;transition:all .2s;align-self:flex-start}
+.bsend:hover{background:var(--orange2);transform:translateY(-2px);box-shadow:0 7px 26px rgba(255,92,0,.36)}
+.csuc{display:none;background:rgba(159,217,48,.08);border:1px solid rgba(159,217,48,.2);border-radius:14px;padding:1.8rem;text-align:center;color:var(--lime);font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:1rem}
+
+/* FOOTER */
+footer{background:var(--dark);padding:4rem 5% 2rem}
+.fi{max-width:1200px;margin:0 auto}
+.ftop{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.06)}
+.flogo{font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:1.35rem;color:#fff;margin-bottom:.7rem;display:block;text-decoration:none}
+.flogo b{color:var(--orange)}
+.ftag{font-size:.83rem;color:rgba(255,255,255,.28);line-height:1.68;max-width:255px}
+.fcol h4{font-size:.64rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:1.1rem}
+.fcol a{display:block;font-size:.83rem;color:rgba(255,255,255,.38);text-decoration:none;margin-bottom:.52rem;transition:color .2s}
+.fcol a:hover{color:var(--orange)}
+.fbot{display:flex;justify-content:space-between;align-items:center;padding-top:1.8rem;font-size:.73rem;color:rgba(255,255,255,.16)}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:960px){
+  .sec{padding:4.5rem 5%}
+  .bento{grid-template-columns:1fr 1fr}
+  .c1,.c2,.c3,.c4,.c5,.c6,.c7,.c8,.c9,.c10,.c11{grid-column:span 1;grid-row:span 1}
+  .wgrid{grid-template-columns:1fr 1fr}
+  .wbig,.wsm,.wmid{grid-column:span 1;height:260px}
+  .sgrid{grid-template-columns:repeat(2,1fr);gap:1.5rem}
+  .tgrid{grid-template-columns:1fr}
+  .agrid{grid-template-columns:1fr;gap:2.5rem}
+  .cgrid{grid-template-columns:1fr;gap:2.5rem}
+  .ftop{grid-template-columns:1fr 1fr;gap:2rem}
+  .cwrap{padding:2.5rem}
+}
+@media(max-width:600px){
+  #cur,#cur2{display:none}
+  body{cursor:auto}
+  nav{width:92%;gap:0;padding:.6rem .85rem .6rem 1.3rem;justify-content:space-between}
+  .nl,.npill{display:none}
+  .hbtn{display:flex}
+  .hero{padding:5.5rem 6% 3rem;min-height:100svh}
+  .h-title{font-size:2.8rem;line-height:.93}
+  .h-badge{font-size:.6rem}
+  .h-ctas{flex-direction:column;width:100%;gap:.7rem}
+  .btn-or{text-align:center;width:100%;padding:.9rem 1.5rem}
+  .chip{display:none}
+  .sec{padding:3.5rem 5%}
+  .stitle{font-size:clamp(1.9rem,7vw,2.6rem)}
+  .bento{grid-template-columns:1fr}
+  .bc{padding:1.5rem}
+  .wgrid{grid-template-columns:1fr}
+  .wbig,.wsm,.wmid{grid-column:span 1;height:240px}
+  .wfilter{gap:.4rem}
+  .fb{font-size:.72rem;padding:.42rem .95rem}
+  .tgrid{grid-template-columns:1fr;gap:1rem}
+  .agrid{grid-template-columns:1fr;gap:2rem}
+  .avis{padding:1.8rem}
+  .avb .n{font-size:1.6rem}
+  .vals{grid-template-columns:1fr}
+  .cwrap{padding:1.8rem 1.4rem;border-radius:20px}
+  .cgrid{grid-template-columns:1fr;gap:2rem}
+  .crow{grid-template-columns:1fr}
+  .bsend{width:100%;text-align:center;align-self:stretch;padding:.9rem}
+  .ftop{grid-template-columns:1fr;gap:1.8rem}
+  .fbot{flex-direction:column;gap:.5rem;text-align:center}
+  .sgrid{grid-template-columns:1fr 1fr;gap:1rem}
+  .sband{padding:2.5rem 5%}
+  .sitem .n{font-size:2rem}
+}
+</style>
+</head>
+<body>
+<div id="cur"></div><div id="cur2"></div>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mobMenu">
+  <a href="#" onclick="go('home',event);closeMob()">Home</a>
+  <a href="#" onclick="go('services',event);closeMob()">Services</a>
+  <a href="#" onclick="go('works',event);closeMob()">Work</a>
+  <a href="#" onclick="go('about',event);closeMob()">About</a>
+  <a href="#" onclick="go('contact',event);closeMob()">Contact</a>
+  <a class="mob-pill" href="#" onclick="go('contact',event);closeMob()">Get a Quote →</a>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="logo" href="#" onclick="go('home',event)">South<b>Ads</b></a>
+  <ul class="nl">
+    <li><a href="#" onclick="go('home',event)" id="l-home" class="on">Home</a></li>
+    <li><a href="#" onclick="go('services',event)" id="l-services">Services</a></li>
+    <li><a href="#" onclick="go('works',event)" id="l-works">Work</a></li>
+    <li><a href="#" onclick="go('about',event)" id="l-about">About</a></li>
+    <li><a href="#" onclick="go('contact',event)" id="l-contact">Contact</a></li>
+  </ul>
+  <a class="npill" href="#" onclick="go('contact',event)">Get a Quote →</a>
+  <button class="hbtn" id="hbtn" onclick="toggleMob()"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- ████ HOME ████ -->
+<div class="pg active" id="pg-home">
+  <div class="hero">
+    <div class="hb1"></div><div class="hb2"></div><div class="hb3"></div>
+    <div class="gridbg"></div>
+    <div class="chip" style="top:22%;left:5%;animation-delay:0s"><div class="cdot" style="background:var(--orange)"></div>120+ Brand Campaigns</div>
+    <div class="chip" style="top:28%;right:5%;animation-delay:1.5s"><div class="cdot" style="background:var(--lime)"></div>15+ Years of Excellence</div>
+    <div class="chip" style="bottom:22%;left:7%;animation-delay:.8s"><div class="cdot" style="background:var(--purple)"></div>Pan-India Reach</div>
+    <div class="h-eye"><div class="hpulse"></div>360° Advertising Solutions</div>
+    <h1 class="h-title">We Make Your<span class="line2 gr">Brand Unmissable.</span></h1>
+    <p class="h-sub">South Ads is India's premier full-spectrum advertising company delivering outdoor campaigns, brand activations, events, and creative media solutions across the nation.</p>
+    <div class="h-ctas">
+      <a class="btn-or" href="#" onclick="go('works',event)">View Our Work ↗</a>
+      <a class="btn-lt" href="#" onclick="go('contact',event)">Get a Free Consultation →</a>
+    </div>
+    <div class="scue"><div class="sw2"><div class="sd"></div></div></div>
+  </div>
+
+  <!-- TICKER -->
+  <div class="ticker"><div class="ttrack">
+    <span class="titem"><b class="tstar">★</b>Outdoor Advertising</span><span class="titem"><b class="tstar">★</b>Brand Activation</span><span class="titem"><b class="tstar">★</b>Event Management</span><span class="titem"><b class="tstar">★</b>Promotion Campaigns</span><span class="titem"><b class="tstar">★</b>Hoarding &amp; Signage</span><span class="titem"><b class="tstar">★</b>Transit Media</span><span class="titem"><b class="tstar">★</b>Retail Branding</span><span class="titem"><b class="tstar">★</b>360° Media Solutions</span>
+    <span class="titem"><b class="tstar">★</b>Outdoor Advertising</span><span class="titem"><b class="tstar">★</b>Brand Activation</span><span class="titem"><b class="tstar">★</b>Event Management</span><span class="titem"><b class="tstar">★</b>Promotion Campaigns</span><span class="titem"><b class="tstar">★</b>Hoarding &amp; Signage</span><span class="titem"><b class="tstar">★</b>Transit Media</span><span class="titem"><b class="tstar">★</b>Retail Branding</span><span class="titem"><b class="tstar">★</b>360° Media Solutions</span>
+  </div></div>
+
+  <!-- STATS -->
+  <div class="sband">
+    <div class="sgrid">
+      <div class="sitem rv"><span class="n" data-c="120" data-s="+">0</span><div class="l">Successful Campaigns</div></div>
+      <div class="sitem rv d1"><span class="n" data-c="15" data-s="+ Yrs">0</span><div class="l">Industry Experience</div></div>
+      <div class="sitem rv d2"><span class="n">Pan-India</span><div class="l">Nationwide Reach</div></div>
+      <div class="sitem rv d3"><span class="n" data-c="500" data-s="+">0</span><div class="l">Brands Served</div></div>
+    </div>
+  </div>
+
+  <!-- SERVICES PREVIEW -->
+  <section class="sec" style="background:var(--warm)">
+    <div class="sw">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1.5rem;margin-bottom:3rem">
+        <div class="rv"><span class="slbl">Our Expertise</span><h2 class="stitle" style="margin-bottom:0">360° Advertising Services</h2></div>
+        <a class="btn-lt rv" href="#" onclick="go('services',event)">View All Services →</a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem">
+        <div class="bc rv" style="border-radius:22px"><div class="cico" style="background:rgba(255,92,0,.1)">🏙️</div><div class="cname">Outdoor Advertising</div><div class="cdesc">Hoardings, billboards, transit media and large-format displays that command public attention at scale.</div></div>
+        <div class="bc rv d1" style="border-radius:22px"><div class="cico" style="background:rgba(232,48,106,.1)">🎯</div><div class="cname">Brand Activation</div><div class="cdesc">On-ground programs creating real, measurable interactions between your brand and its consumers.</div></div>
+        <div class="bc rv d2" style="border-radius:22px"><div class="cico" style="background:rgba(106,31,255,.1)">🎪</div><div class="cname">Event Management</div><div class="cdesc">End-to-end event solutions: product launches, exhibitions, trade shows and corporate events.</div></div>
+        <div class="bc rv d3" style="border-radius:22px"><div class="cico" style="background:rgba(0,200,232,.1)">📣</div><div class="cname">Promotion Campaigns</div><div class="cdesc">Integrated BTL &amp; ATL campaigns that build brand recall and generate measurable consumer response.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRANDS -->
+  <div class="bscroll">
+    <div style="text-align:center;padding:2rem 5%">
+      <span class="slbl rv" style="justify-content:center">Trusted By</span>
+      <h2 class="stitle rv" style="text-align:center;font-size:clamp(1.5rem,3vw,2.5rem)">Brands we've amplified</h2>
+    </div>
+    <div class="brow">
+      <div class="bpill"><div class="bava" style="background:rgba(255,90,90,.12);color:#ff5a5a">AK</div><div><div class="bname">Aroma Kitchen</div><div class="bind">F&amp;B</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(90,200,255,.12);color:#5ac8ff">FL</div><div><div class="bname">FitLife Studios</div><div class="bind">Fitness</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(212,168,67,.15);color:#d4a843">NV</div><div><div class="bname">Nova Electronics</div><div class="bind">Retail</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(90,255,150,.12);color:#5aff96">GL</div><div><div class="bname">GreenLeaf Organics</div><div class="bind">FMCG</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(180,90,255,.12);color:#b45aff">ZR</div><div><div class="bname">Zenith Realty</div><div class="bind">Real Estate</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(0,200,232,.12);color:#00c8e8">SP</div><div><div class="bname">SunPeak Solar</div><div class="bind">Energy</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(244,114,182,.12);color:#f472b6">MT</div><div><div class="bname">Metro Textiles</div><div class="bind">Apparel</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(255,90,90,.12);color:#ff5a5a">AK</div><div><div class="bname">Aroma Kitchen</div><div class="bind">F&amp;B</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(90,200,255,.12);color:#5ac8ff">FL</div><div><div class="bname">FitLife Studios</div><div class="bind">Fitness</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(212,168,67,.15);color:#d4a843">NV</div><div><div class="bname">Nova Electronics</div><div class="bind">Retail</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(90,255,150,.12);color:#5aff96">GL</div><div><div class="bname">GreenLeaf Organics</div><div class="bind">FMCG</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(180,90,255,.12);color:#b45aff">ZR</div><div><div class="bname">Zenith Realty</div><div class="bind">Real Estate</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(0,200,232,.12);color:#00c8e8">SP</div><div><div class="bname">SunPeak Solar</div><div class="bind">Energy</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(244,114,182,.12);color:#f472b6">MT</div><div><div class="bname">Metro Textiles</div><div class="bind">Apparel</div></div></div>
+    </div>
+  </div>
+
+  <!-- TESTIMONIALS -->
+  <section class="sec">
+    <div class="sw">
+      <div style="text-align:center">
+        <span class="slbl rv" style="justify-content:center">Client Voices</span>
+        <h2 class="stitle rv" style="text-align:center">Words from the brands<br>we made unmissable</h2>
+      </div>
+      <div class="tgrid">
+        <div class="tc rv"><div class="tstars">★★★★★</div><p class="tq">"South Ads executed our outdoor campaign flawlessly across 12 cities. The hoarding placements were strategic and the brand visibility we gained was extraordinary."</p><div class="tauth"><div class="tava" style="background:rgba(255,92,0,.12);color:var(--orange)">RK</div><div><div class="tname">Ramesh Kumar</div><div class="trole">VP Marketing, Aroma Kitchen</div></div></div><div class="tbg">★</div></div>
+        <div class="tc feat rv d1"><div class="tstars">★★★★★</div><p class="tq">"The brand activation event they organised drew 4,000+ attendees. Attention to detail and on-ground energy was exceptional. Truly a world-class advertising partner."</p><div class="tauth"><div class="tava" style="background:rgba(159,217,48,.15);color:var(--lime)">PN</div><div><div class="tname">Priya Nair</div><div class="trole">Brand Director, Nova Electronics</div></div></div><div class="tbg">★</div></div>
+        <div class="tc rv d2"><div class="tstars">★★★★★</div><p class="tq">"Their 360° campaign — combining transit media, mall activations, and digital OOH — gave us complete market saturation. South Ads is simply the best in the business."</p><div class="tauth"><div class="tava" style="background:rgba(106,31,255,.12);color:var(--purple)">AS</div><div><div class="tname">Arun Selvam</div><div class="trole">CEO, Zenith Realty</div></div></div><div class="tbg">★</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cstrip">
+    <div class="sw">
+      <h2 class="rv">Ready to make your brand<br><em>impossible to ignore?</em></h2>
+      <a class="btn-or rv" href="#" onclick="go('contact',event)">Request a Consultation →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ████ SERVICES ████ -->
+<div class="pg" id="pg-services">
+<section class="sec">
+<div class="sw">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem;flex-wrap:wrap;gap:2rem">
+    <div class="rv"><span class="slbl">Our Capabilities</span><h2 class="stitle">Full-Spectrum<br>Advertising Solutions</h2></div>
+    <p class="ssub rv">From a single hoarding to a nationwide 360° campaign — we have the resources, reach, and expertise to deliver.</p>
+  </div>
+  <div class="bento">
+    <div class="bc c1 rv"><div class="cnum">01</div><div class="cico" style="background:rgba(255,92,0,.1)">🏙️</div><div class="cname">Outdoor Advertising</div><div class="cdesc">Hoardings, billboards, unipoles, bridge panels, and large-format displays strategically placed in high-traffic zones to create maximum brand impressions across markets of any scale.</div><div class="ctag" style="background:rgba(255,92,0,.1);color:var(--orange)">OOH Media</div><div class="bignum">01</div></div>
+    <div class="bc c2 rv d1"><div class="cnum">02</div><div class="cico" style="background:rgba(232,48,106,.1)">🎯</div><div class="cname">Brand Activation</div><div class="cdesc">Experiential programs — mall activations, society programmes, market storms, and interactive touchpoints that convert attention into brand loyalty.</div><div class="ctag" style="background:rgba(232,48,106,.1);color:var(--pink)">BTL</div></div>
+    <div class="bc c3 rv d2"><div class="cnum">03</div><div class="cico" style="background:rgba(106,31,255,.1)">🎪</div><div class="cname">Event Management</div><div class="cdesc">End-to-end solutions: product launches, trade shows, road shows — conceptualised and executed with precision.</div><div class="ctag" style="background:rgba(106,31,255,.1);color:var(--purple)">Events</div></div>
+    <div class="bc c4 rv"><div class="cnum">04</div><div class="cico" style="background:rgba(0,200,232,.1)">📣</div><div class="cname">Integrated Promotion Campaigns</div><div class="cdesc">ATL and BTL strategies working in concert — TV, print, digital OOH, radio, and on-ground promotions designed to dominate every consumer touchpoint your brand has across all key markets.</div><div class="ctag" style="background:rgba(0,200,232,.1);color:var(--cyan)">360°</div></div>
+    <div class="bc c5 rv d1"><div class="cnum">05</div><div class="cico" style="background:rgba(159,217,48,.12)">🚌</div><div class="cname">Transit &amp; Mobile Media</div><div class="cdesc">Bus wraps, auto branding, metro panels, and mobile vans that carry your message through the streets — reaching audiences on the move.</div><div class="ctag" style="background:rgba(159,217,48,.12);color:#6aad00">Transit</div></div>
+    <div class="bc c6 rv"><div class="cnum">06</div><div class="cico" style="background:rgba(255,200,0,.1)">🏪</div><div class="cname">Retail &amp; In-Shop Branding</div><div class="cdesc">POS materials, shop fascia, shelf branding, window graphics, and in-store displays that influence the final buying decision.</div></div>
+    <div class="bc c7 rv d1"><div class="cnum">07</div><div class="cico" style="background:rgba(255,92,0,.1)">💡</div><div class="cname">LED &amp; Digital Signage</div><div class="cdesc">High-impact LED hoardings, digital display boards, ACP signage, acrylic and neon signs designed for maximum visibility and durability.</div></div>
+    <div class="bc c8 rv d2"><div class="cnum">08</div><div class="cico" style="background:rgba(232,48,106,.1)">🎨</div><div class="cname">Creative &amp; Design Studio</div><div class="cdesc">In-house creative team handling campaign concepts, visual identity, artwork production, and media adaptations.</div></div>
+    <div class="bc c9 rv"><div class="cnum">09</div><div class="cico" style="background:rgba(106,31,255,.1)">📊</div><div class="cname">Media Planning &amp; Buying</div><div class="cdesc">Strategic planning across OOH, print, radio, and ambient channels. We identify the right media mix to maximise reach, frequency, and ROI — negotiating the best rates across pan-India media networks for clients of all sizes.</div></div>
+    <div class="bc c10 rv d1"><div class="cnum">10</div><div class="cico" style="background:rgba(0,200,232,.1)">🤝</div><div class="cname">Corporate Branding &amp; Identity</div><div class="cdesc">From logo and visual identity to office signage, vehicle branding, uniforms, and stationery — cohesive brand environments that communicate professionalism at every touchpoint.</div></div>
+    <div class="bc c11 rv d2" style="background:var(--orange);border-color:transparent"><div class="cico" style="background:rgba(255,255,255,.2)">💬</div><div class="cname" style="color:#fff">Not sure where to start?</div><div class="cdesc" style="color:rgba(255,255,255,.75)">Book a free strategy consultation. We'll map the right campaign for your brand.</div><a href="#" onclick="go('contact',event)" style="display:inline-block;margin-top:1.1rem;background:#fff;color:var(--orange);font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:.78rem;padding:.55rem 1.3rem;border-radius:100px;text-decoration:none">Book a Call →</a></div>
+  </div>
+</div>
+</section>
+</div>
+
+<!-- ████ WORKS ████ -->
+<div class="pg" id="pg-works">
+<section class="sec">
+<div class="sw">
+  <div class="rv" style="margin-bottom:2rem"><span class="slbl">Our Work</span><h2 class="stitle">Campaigns that<br>commanded attention</h2></div>
+  <div class="wfilter rv">
+    <button class="fb on" onclick="fw('all',this)">All</button>
+    <button class="fb" onclick="fw('ooh',this)">Outdoor</button>
+    <button class="fb" onclick="fw('activation',this)">Brand Activation</button>
+    <button class="fb" onclick="fw('event',this)">Events</button>
+    <button class="fb" onclick="fw('transit',this)">Transit Media</button>
+  </div>
+  <div class="wgrid" id="wg">
+    <div class="wc wbig rv" data-cat="ooh">
+      <div class="wbg vw1">
+        <div class="mpwrap" style="flex-direction:column;gap:1rem;padding:2rem">
+          <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,92,0,.15);border-radius:12px;padding:1.5rem;width:82%;text-align:center">
+            <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:1.4rem;font-weight:900;color:rgba(255,140,66,.9);line-height:1">AROMA<br>KITCHEN</div>
+            <div style="height:1px;background:rgba(255,255,255,.08);margin:.7rem 0"></div>
+            <div style="font-size:.58rem;color:rgba(255,255,255,.3);letter-spacing:.15em;text-transform:uppercase">Hoarding Campaign · Chennai</div>
+          </div>
+          <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:.72rem;font-weight:800;color:var(--lime);letter-spacing:.05em">12 Hoardings · 3 Cities</div>
+        </div>
+      </div>
+      <div class="wov"></div><div class="warr">↗</div>
+      <span class="rbadge">3 Cities</span>
+      <div class="winfo"><div class="wcat">Outdoor Advertising Campaign</div><div class="wname">Aroma Kitchen — City-Wide Hoarding Blitz</div><div class="wmeta">12 prime hoardings across Chennai, Coimbatore &amp; Madurai</div></div>
+    </div>
+    <div class="wc wsm rv d1" data-cat="activation">
+      <div class="wbg vw2">
+        <div class="mpwrap" style="flex-direction:column;gap:.8rem">
+          <div style="background:rgba(255,255,255,.06);border:1px solid rgba(106,31,255,.2);border-radius:12px;padding:1.2rem;width:185px">
+            <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:.8rem;font-weight:900;color:rgba(180,90,255,.9);margin-bottom:.4rem">NOVA LAUNCH</div>
+            <div style="font-size:.62rem;color:rgba(255,255,255,.3);line-height:1.5">Brand Activation · Phoenix Mall</div>
+            <div style="margin-top:.7rem;background:rgba(106,31,255,.2);color:#b45aff;font-size:.62rem;font-weight:700;padding:.22rem .7rem;border-radius:100px;display:inline-block">4,000+ Footfall</div>
+          </div>
+          <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:.68rem;font-weight:800;color:var(--lime);letter-spacing:.04em">₹2Cr media value generated</div>
+        </div>
+      </div>
+      <div class="wov"></div><div class="warr">↗</div>
+      <span class="rbadge">4,000+ Footfall</span>
+      <div class="winfo"><div class="wcat">Brand Activation</div><div class="wname">Nova Electronics — Product Launch Activation</div><div class="wmeta">Mall activation · 4,000+ consumer touchpoints</div></div>
+    </div>
+    <div class="wc wmid rv" data-cat="transit">
+      <div class="wbg vw3">
+        <div class="mpwrap" style="flex-direction:column;gap:1rem">
+          <div style="background:rgba(255,255,255,.05);border:1px solid rgba(106,31,255,.2);border-radius:10px;padding:1rem;width:88%;max-width:230px">
+            <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:.9rem;font-weight:900;color:rgba(180,90,255,.9)">ZENITH REALTY</div>
+            <div style="font-size:.58rem;color:rgba(255,255,255,.25);letter-spacing:.1em;text-transform:uppercase;margin:.3rem 0 .6rem">Transit Media Campaign</div>
+            <div style="display:flex;gap:.4rem">
+              <div style="flex:1;height:22px;border-radius:5px;background:rgba(106,31,255,.12);border:1px solid rgba(106,31,255,.2)"></div>
+              <div style="flex:1;height:22px;border-radius:5px;background:rgba(106,31,255,.25);border:1px solid rgba(106,31,255,.4)"></div>
+            </div>
+          </div>
+          <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:.68rem;font-weight:800;color:var(--lime);letter-spacing:.04em">200 Buses · 60 Days</div>
+        </div>
+      </div>
+      <div class="wov"></div><div class="warr">↗</div>
+      <div class="winfo"><div class="wcat">Transit Media</div><div class="wname">Zenith Realty — Bus Wrap Campaign</div><div class="wmeta">200 TNSTC buses · Chennai · 60-day campaign</div></div>
+    </div>
+    <div class="wc wmid rv d1" data-cat="event">
+      <div class="wbg vw4">
+        <div class="mpwrap" style="flex-direction:column;gap:.7rem;padding:1.5rem">
+          <div style="width:90%;background:rgba(255,255,255,.04);border:1px solid rgba(159,217,48,.15);border-radius:10px;padding:1.1rem">
+            <div style="height:4px;width:70%;background:rgba(159,217,48,.4);border-radius:2px;margin-bottom:6px"></div>
+            <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:.75rem;font-weight:800;color:rgba(159,217,48,.8)">GreenLeaf Trade Expo</div>
+            <div style="font-size:.6rem;color:rgba(255,255,255,.25);margin-top:.3rem">800 Trade Visitors · 45 Exhibitors</div>
+          </div>
+          <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:.68rem;font-weight:800;color:var(--lime);letter-spacing:.04em">2-Day Exhibition Event</div>
+        </div>
+      </div>
+      <div class="wov"></div><div class="warr">↗</div>
+      <span class="rbadge">800 Visitors</span>
+      <div class="winfo"><div class="wcat">Event Management</div><div class="wname">GreenLeaf Organics — Trade Exhibition</div><div class="wmeta">Full event production · 45 exhibitors · 2-day expo</div></div>
+    </div>
+  </div>
+</div>
+</section>
+</div>
+
+<!-- ████ ABOUT ████ -->
+<div class="pg" id="pg-about">
+<section class="sec">
+<div class="sw">
+  <div class="agrid">
+    <div class="avis rv">
+      <div class="av4">
+        <div class="avb"><span class="n">500+</span><span class="l">Brands Served</span></div>
+        <div class="avb"><span class="n">120+</span><span class="l">Campaigns</span></div>
+        <div class="avb"><span class="n">15yr</span><span class="l">Excellence</span></div>
+        <div class="avb"><span class="n">Pan-IN</span><span class="l">Reach</span></div>
+      </div>
+      <div class="abadges">
+        <span class="abadge">Chennai, TN</span><span class="abadge">Nationwide Reach</span><span class="abadge">360° Advertising</span><span class="abadge">OOH Specialists</span><span class="abadge">BTL &amp; ATL</span><span class="abadge">Event Production</span>
+      </div>
+    </div>
+    <div class="rv d1">
+      <span class="slbl">Who We Are</span>
+      <h2 class="stitle">India's trusted<br>advertising partner</h2>
+      <p class="ssub" style="max-width:100%">South Ads is a Chennai-based full-service advertising company providing 360-degree solutions — encompassing outdoor campaigns, promotion campaigns, events, and brand activation programmes. We have the resources to coordinate and consolidate your advertising needs nationwide.</p>
+      <ul class="apts">
+        <li><span class="aptdot">🏙️</span>Pan-India outdoor media network across 50+ cities</li>
+        <li><span class="aptdot">🎯</span>In-house creative, production and activation teams</li>
+        <li><span class="aptdot">📊</span>Data-backed media planning and buying</li>
+        <li><span class="aptdot">🤝</span>Dedicated account management for every client</li>
+        <li><span class="aptdot">✅</span>End-to-end execution — concept to completion</li>
+      </ul>
+      <a class="btn-or" href="#" onclick="go('contact',event)" style="margin-top:2rem">Partner With Us →</a>
+    </div>
+  </div>
+  <div class="vals">
+    <div style="font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:clamp(1.8rem,3vw,2.8rem);letter-spacing:-.04em;grid-column:1/-1;text-align:center;margin-top:1rem" class="rv">Our <span style="color:var(--orange);font-style:italic">guiding principles</span></div>
+    <div class="bc rv" style="border-radius:22px"><div class="cico" style="background:rgba(255,92,0,.1)">🔥</div><div class="cname">Impact Over Volume</div><div class="cdesc">We prioritise strategic placements that generate genuine brand recall over high-volume, low-quality exposure.</div></div>
+    <div class="bc rv d1" style="border-radius:22px"><div class="cico" style="background:rgba(0,200,232,.1)">🧠</div><div class="cname">Strategy-Led Creativity</div><div class="cdesc">Every campaign is grounded in consumer insight and market intelligence before creative execution begins.</div></div>
+    <div class="bc rv d2" style="border-radius:22px"><div class="cico" style="background:rgba(159,217,48,.12)">🌐</div><div class="cname">Nationwide Network</div><div class="cdesc">Our pan-India media relationships give clients access to premium inventory in every major market.</div></div>
+    <div class="bc rv d3" style="border-radius:22px"><div class="cico" style="background:rgba(106,31,255,.1)">⚡</div><div class="cname">Accountable Execution</div><div class="cdesc">Advertising must be measurable. Every campaign comes with transparent reporting and post-campaign analysis.</div></div>
+  </div>
+</div>
+</section>
+</div>
+
+<!-- ████ CONTACT ████ -->
+<div class="pg" id="pg-contact">
+<section class="sec">
+  <div class="cwrap rv">
+    <div class="cgrid">
+      <div>
+        <span class="slbl" style="color:var(--lime)">Get In Touch</span>
+        <h2 class="stitle" style="color:#fff">Let's build a campaign<br><span style="color:var(--orange);font-style:italic">that gets noticed</span></h2>
+        <p class="ssub" style="color:rgba(255,255,255,.42)">Tell us about your brand and objectives. We'll respond within 24 hours with a tailored advertising strategy.</p>
+        <ul style="list-style:none;margin-top:1.5rem;display:flex;flex-direction:column;gap:.85rem">
+          <li style="display:flex;align-items:center;gap:.7rem;font-size:.87rem;color:var(--muted)"><span style="width:6px;height:6px;border-radius:50%;background:var(--lime);flex-shrink:0;display:block"></span>Free 30-minute strategy consultation</li>
+          <li style="display:flex;align-items:center;gap:.7rem;font-size:.87rem;color:var(--muted)"><span style="width:6px;height:6px;border-radius:50%;background:var(--lime);flex-shrink:0;display:block"></span>Campaign proposal within 48 hours</li>
+          <li style="display:flex;align-items:center;gap:.7rem;font-size:.87rem;color:var(--muted)"><span style="width:6px;height:6px;border-radius:50%;background:var(--lime);flex-shrink:0;display:block"></span>Transparent pricing — no hidden costs</li>
+          <li style="display:flex;align-items:center;gap:.7rem;font-size:.87rem;color:var(--muted)"><span style="width:6px;height:6px;border-radius:50%;background:var(--lime);flex-shrink:0;display:block"></span>Pan-India execution capability</li>
+        </ul>
+        <div style="margin-top:2.5rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.07)">
+          <div style="font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:.5rem">Email us directly</div>
+          <a href="mailto:hello@southads.com" style="color:var(--orange);text-decoration:none;font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:1.1rem">hello@southads.com</a>
+        </div>
+        <div style="margin-top:1.2rem">
+          <div style="font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:.4rem">Headquartered in</div>
+          <div style="color:var(--muted);font-size:.88rem">📍 Chennai, Tamil Nadu · Pan-India Operations</div>
+        </div>
+      </div>
+      <div>
+        <form class="cform" id="cf" onsubmit="sf(event)">
+          <div class="crow">
+            <div class="cgrp"><label class="clbl">Your Name</label><input class="cinp" placeholder="Ramesh Kumar" required/></div>
+            <div class="cgrp"><label class="clbl">Email Address</label><input class="cinp" type="email" placeholder="ramesh@brand.com" required/></div>
+          </div>
+          <div class="crow">
+            <div class="cgrp"><label class="clbl">Phone</label><input class="cinp" placeholder="+91 98765 43210"/></div>
+            <div class="cgrp"><label class="clbl">Company / Brand</label><input class="cinp" placeholder="Your Brand Name"/></div>
+          </div>
+          <div class="cgrp"><label class="clbl">Service Required</label>
+            <select class="cinp">
+              <option value="" style="background:#1c1814">Select a service...</option>
+              <option style="background:#1c1814">Outdoor Advertising (Hoardings / Billboards)</option>
+              <option style="background:#1c1814">Brand Activation</option>
+              <option style="background:#1c1814">Event Management</option>
+              <option style="background:#1c1814">Integrated Promotion Campaign</option>
+              <option style="background:#1c1814">Transit &amp; Mobile Media</option>
+              <option style="background:#1c1814">Retail &amp; In-Shop Branding</option>
+              <option style="background:#1c1814">LED &amp; Digital Signage</option>
+              <option style="background:#1c1814">Creative &amp; Design Studio</option>
+              <option style="background:#1c1814">Media Planning &amp; Buying</option>
+              <option style="background:#1c1814">360° Full Campaign</option>
+            </select>
+          </div>
+          <div class="cgrp"><label class="clbl">Campaign Geography</label>
+            <select class="cinp">
+              <option value="" style="background:#1c1814">Select reach...</option>
+              <option style="background:#1c1814">Single City</option>
+              <option style="background:#1c1814">State-wide</option>
+              <option style="background:#1c1814">Regional (2–5 Cities)</option>
+              <option style="background:#1c1814">Pan-India</option>
+            </select>
+          </div>
+          <div class="cgrp"><label class="clbl">Tell us about your campaign objectives</label>
+            <textarea class="cinp" placeholder="What are you trying to achieve? Target audience, geography, timeline — anything helps..."></textarea>
+          </div>
+          <button type="submit" class="bsend">Send Enquiry →</button>
+        </form>
+        <div class="csuc" id="cs">✓ Enquiry received!<br><span style="font-weight:400;font-size:.85rem;color:rgba(159,217,48,.6)">Our team will be in touch within 24 hours.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fi">
+    <div class="ftop">
+      <div>
+        <a class="flogo" href="#" onclick="go('home',event)">South<b>Ads</b></a>
+        <p class="ftag">India's trusted 360° advertising company. From outdoor hoardings to brand activations — we make your brand impossible to ignore.</p>
+        <div style="margin-top:1.2rem;font-size:.76rem;color:rgba(255,255,255,.2)">📍 Chennai, Tamil Nadu · Pan-India Operations</div>
+      </div>
+      <div class="fcol"><h4>Navigate</h4><a href="#" onclick="go('home',event)">Home</a><a href="#" onclick="go('services',event)">Services</a><a href="#" onclick="go('works',event)">Our Work</a><a href="#" onclick="go('about',event)">About Us</a><a href="#" onclick="go('contact',event)">Contact</a></div>
+      <div class="fcol"><h4>Services</h4><a href="#" onclick="go('services',event)">Outdoor Advertising</a><a href="#" onclick="go('services',event)">Brand Activation</a><a href="#" onclick="go('services',event)">Event Management</a><a href="#" onclick="go('services',event)">Transit Media</a><a href="#" onclick="go('services',event)">Media Planning</a></div>
+      <div class="fcol"><h4>Connect</h4><a href="#">Instagram</a><a href="#">LinkedIn</a><a href="#">Facebook</a><a href="mailto:hello@southads.com">hello@southads.com</a><a href="tel:+919876543210">+91 98765 43210</a></div>
+    </div>
+    <div class="fbot"><span>© 2025 South Ads. All rights reserved. | India's Premier Advertising Company</span><span>Made with 🔥 in Chennai</span></div>
+  </div>
+</footer>
+
+<script>
+// CURSOR
+const c1=document.getElementById('cur'),c2=document.getElementById('cur2');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;c1.style.left=mx+'px';c1.style.top=my+'px'});
+(function t(){rx+=(mx-rx)*.13;ry+=(my-ry)*.13;c2.style.left=rx+'px';c2.style.top=ry+'px';requestAnimationFrame(t)})();
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{c1.style.width='16px';c1.style.height='16px';c2.style.width='44px';c2.style.height='44px'});
+  el.addEventListener('mouseleave',()=>{c1.style.width='10px';c1.style.height='10px';c2.style.width='30px';c2.style.height='30px'});
+});
+
+// NAV SCROLL
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('sh',scrollY>50));
+
+// ROUTING
+function go(id,e){
+  if(e)e.preventDefault();
+  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nl a').forEach(a=>a.classList.remove('on'));
+  document.getElementById('pg-'+id).classList.add('active');
+  const l=document.getElementById('l-'+id);if(l)l.classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+  setTimeout(rev,100);setTimeout(cnt,220);
+}
+
+// REVEAL
+function rev(){
+  const obs=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target)}})},{threshold:.08});
+  document.querySelectorAll('.rv:not(.on)').forEach(el=>{
+    const r=el.getBoundingClientRect();
+    if(r.top<window.innerHeight+10)el.classList.add('on');
+    else obs.observe(el);
+  });
+}
+window.addEventListener('scroll',rev,{passive:true});
+
+// COUNT UP
+function cnt(){
+  document.querySelectorAll('[data-c]:not([data-done])').forEach(el=>{
+    el.dataset.done='1';
+    const tg=+el.dataset.c,sf=el.dataset.s||'';
+    let s=0;const dur=1600,step=16,inc=tg/(dur/step);
+    const tm=setInterval(()=>{s+=inc;if(s>=tg){s=tg;clearInterval(tm)}el.textContent=Math.floor(s)+sf},step);
+  });
+}
+
+// WORK FILTER
+function fw(cat,btn){
+  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));btn.classList.add('on');
+  document.querySelectorAll('.wc').forEach(c=>{c.style.display=cat==='all'||c.dataset.cat===cat?'block':'none'});
+}
+
+// FORM
+function sf(e){e.preventDefault();document.getElementById('cf').style.display='none';document.getElementById('cs').style.display='block'}
+
+// HAMBURGER
+function toggleMob(){
+  const m=document.getElementById('mobMenu'),b=document.getElementById('hbtn');
+  m.classList.toggle('open');b.classList.toggle('open');
+  document.body.style.overflow=m.classList.contains('open')?'hidden':'';
+}
+function closeMob(){
+  document.getElementById('mobMenu').classList.remove('open');
+  document.getElementById('hbtn').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+// INIT
+setTimeout(rev,250);setTimeout(cnt,450);
+</script>
+</body>
+</html>
