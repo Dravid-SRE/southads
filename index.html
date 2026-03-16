@@ -152,7 +152,9 @@ nav.sh{box-shadow:0 6px 32px rgba(0,0,0,.1)}
 .wsm{grid-column:span 5;height:450px}
 .wmid{grid-column:span 6;height:300px}
 .wbg{position:absolute;inset:0;transition:transform .6s}
+.wbg img{width:100%;height:100%;object-fit:cover;display:block}
 .wc:hover .wbg{transform:scale(1.05)}
+.wcard{grid-column:span 4;height:280px}
 .wov{position:absolute;inset:0;background:linear-gradient(to top,rgba(14,12,10,.9),transparent 55%)}
 .winfo{position:absolute;bottom:0;left:0;right:0;padding:1.8rem}
 .wcat{font-size:.63rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:.35rem}
@@ -222,6 +224,34 @@ nav.sh{box-shadow:0 6px 32px rgba(0,0,0,.1)}
 .wa-float-tooltip{background:var(--dark);color:#fff;font-family:'Cabinet Grotesk',sans-serif;font-weight:700;font-size:.78rem;padding:.45rem 1rem;border-radius:100px;white-space:nowrap;box-shadow:0 4px 16px rgba(0,0,0,.3);opacity:0;transform:translateX(8px);transition:all .2s;pointer-events:none;border:1px solid rgba(255,255,255,.08)}
 .wa-float:hover .wa-float-tooltip{opacity:1;transform:translateX(0)}
 
+/* WORK GALLERY LIGHTBOX (all categories) */
+.work-modal{position:fixed;inset:0;z-index:900;background:rgba(14,12,10,.96);backdrop-filter:blur(14px);display:none;align-items:center;justify-content:center;padding:2rem;overflow:auto;animation:workfade .25s ease}
+.work-modal.open{display:flex}
+@keyframes workfade{from{opacity:0}to{opacity:1}}
+.work-modal-backdrop{position:absolute;inset:0;cursor:pointer}
+.work-modal-box{position:relative;background:var(--mid);border-radius:24px;max-width:1200px;width:100%;max-height:calc(100vh - 4rem);overflow:hidden;border:1px solid rgba(255,255,255,.12);box-shadow:0 24px 64px rgba(0,0,0,.5);animation:workslide .3s ease}
+@keyframes workslide{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
+.work-modal-header{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.2)}
+.work-modal-title{font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:1.2rem;color:#fff;letter-spacing:-.02em}
+.work-modal-close{width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.4rem;line-height:1;transition:all .2s}
+.work-modal-close:hover{background:var(--orange);border-color:var(--orange)}
+.work-modal-body{padding:1.5rem;overflow-y:auto;max-height:calc(100vh - 8rem)}
+.work-gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.85rem}
+.work-gallery-grid img{width:100%;height:160px;object-fit:cover;border-radius:12px;display:block;transition:transform .2s,border-color .2s;border:2px solid transparent}
+.work-gallery-grid img:hover{border-color:var(--orange);transform:scale(1.02)}
+
+/* Work category bento cards */
+.work-bento{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.1rem}
+.work-cat-card{position:relative;border-radius:20px;overflow:hidden;background:var(--mid);aspect-ratio:4/3;cursor:pointer;transition:transform .25s,box-shadow .25s;border:1px solid var(--border)}
+.work-cat-card:hover{transform:translateY(-4px);box-shadow:0 20px 48px rgba(0,0,0,.2);border-color:rgba(255,92,0,.25)}
+.work-cat-card img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.work-cat-card:hover img{transform:scale(1.06)}
+.work-cat-card .over{position:absolute;inset:0;background:linear-gradient(to top,rgba(14,12,10,.92) 30%,transparent 65%);display:flex;flex-direction:column;justify-content:flex-end;padding:1.25rem}
+.work-cat-card .over .cat-name{font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:1.05rem;color:#fff;letter-spacing:-.02em;line-height:1.15;margin-bottom:.35rem}
+.work-cat-card .over .cat-meta{font-size:.7rem;color:rgba(255,255,255,.5);letter-spacing:.06em}
+.work-cat-card .over .view-tag{display:inline-flex;align-items:center;gap:.4rem;font-size:.72rem;font-weight:700;color:var(--orange);margin-top:.5rem}
+.work-cat-card .over .view-tag::after{content:'→';opacity:.9}
+
 /* FOOTER */
 footer{background:var(--dark);padding:4rem 5% 2rem}
 .fi{max-width:1200px;margin:0 auto}
@@ -239,8 +269,8 @@ footer{background:var(--dark);padding:4rem 5% 2rem}
   .sec{padding:4.5rem 5%}
   .bento{grid-template-columns:1fr 1fr}
   .c1,.c2,.c3,.c4,.c5,.c6,.c7,.c8,.c9,.c10,.c11,.c12,.c13{grid-column:span 1;grid-row:span 1}
-  .wgrid{grid-template-columns:1fr 1fr}
-  .wbig,.wsm,.wmid{grid-column:span 1;height:260px}
+  .work-bento{grid-template-columns:repeat(2,1fr);gap:.9rem}
+  .work-cat-card .over .cat-name{font-size:.95rem}
   .sgrid{grid-template-columns:repeat(2,1fr);gap:1.5rem}
   .tgrid{grid-template-columns:1fr}
   .agrid{grid-template-columns:1fr;gap:2.5rem}
@@ -264,9 +294,9 @@ footer{background:var(--dark);padding:4rem 5% 2rem}
   .stitle{font-size:clamp(1.9rem,7vw,2.6rem)}
   .bento{grid-template-columns:1fr}
   .bc{padding:1.5rem}
-  .wgrid{grid-template-columns:1fr}
-  .wbig,.wsm,.wmid{grid-column:span 1;height:240px}
-  .wfilter{gap:.4rem}
+  .work-bento{grid-template-columns:1fr;gap:1rem}
+  .work-cat-card{aspect-ratio:16/10}
+  .work-cat-card .over .cat-name{font-size:1rem}
   .fb{font-size:.8rem;padding:.6rem 1.1rem;min-height:44px;display:inline-flex;align-items:center;touch-action:manipulation}
   .tgrid{grid-template-columns:1fr;gap:1rem}
   .agrid{grid-template-columns:1fr;gap:2rem}
@@ -482,105 +512,25 @@ footer{background:var(--dark);padding:4rem 5% 2rem}
 <div class="pg" id="pg-works">
 <section class="sec">
 <div class="sw">
-  <div class="rv" style="margin-bottom:2rem"><span class="slbl">Our Work</span><h2 class="stitle">Campaigns that<br>commanded attention</h2></div>
-  <div class="wfilter rv">
-    <button class="fb on" onclick="fw('all',this)">All</button>
-    <button class="fb" onclick="fw('promo',this)">Promotions</button>
-    <button class="fb" onclick="fw('transit',this)">Bus &amp; Transit</button>
-    <button class="fb" onclick="fw('activation',this)">Brand Activation</button>
-    <button class="fb" onclick="fw('event',this)">Events</button>
+  <div class="rv" style="margin-bottom:2.5rem;text-align:center;max-width:720px;margin-left:auto;margin-right:auto">
+    <span class="slbl" style="justify-content:center">Portfolio</span>
+    <h2 class="stitle" style="margin-bottom:.6rem">15 years of work.<br>Every type of job.</h2>
+    <p class="ssub" style="margin:0 auto">We don’t just say we can do it — we’ve done it. Click any category to see our real projects across fabrication, branding, events, and more.</p>
   </div>
-  <div class="wgrid" id="wg">
-    <div class="wc wbig rv" data-cat="promo">
-      <div class="wbg vw1">
-        <div class="mpwrap" style="flex-direction:column;gap:1rem;padding:2rem">
-          <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,92,0,.15);border-radius:12px;padding:1.5rem;width:82%;text-align:center">
-            <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:1.4rem;font-weight:900;color:rgba(255,140,66,.9);line-height:1">COLGATE</div>
-            <div style="height:1px;background:rgba(255,255,255,.08);margin:.7rem 0"></div>
-            <div style="font-size:.58rem;color:rgba(255,255,255,.3);letter-spacing:.15em;text-transform:uppercase">Home to Home Activity</div>
-          </div>
-          <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:.72rem;font-weight:800;color:var(--lime);letter-spacing:.05em">Promotions · FMCG</div>
-        </div>
-      </div>
-      <div class="wov"></div><div class="warr">↗</div>
-      <span class="rbadge">FMCG</span>
-      <div class="winfo"><div class="wcat">Promotions</div><div class="wname">Colgate — Home to Home Activity</div><div class="wmeta">On-ground home-to-home promotion campaign</div></div>
-    </div>
-    <div class="wc wsm rv d1" data-cat="promo">
-      <div class="wbg vw2">
-        <div class="mpwrap" style="flex-direction:column;gap:.8rem">
-          <div style="background:rgba(255,255,255,.06);border:1px solid rgba(106,31,255,.2);border-radius:12px;padding:1.2rem;width:185px">
-            <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:.8rem;font-weight:900;color:rgba(180,90,255,.9);margin-bottom:.4rem">NIMYLE</div>
-            <div style="font-size:.62rem;color:rgba(255,255,255,.3);line-height:1.5">School Activity Project</div>
-            <div style="margin-top:.7rem;background:rgba(106,31,255,.2);color:#b45aff;font-size:.62rem;font-weight:700;padding:.22rem .7rem;border-radius:100px;display:inline-block">Education</div>
-          </div>
-          <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:.68rem;font-weight:800;color:var(--lime);letter-spacing:.04em">School Activity</div>
-        </div>
-      </div>
-      <div class="wov"></div><div class="warr">↗</div>
-      <span class="rbadge">School</span>
-      <div class="winfo"><div class="wcat">Promotions</div><div class="wname">Nimyle — School Activity</div><div class="wmeta">School activity project · brand engagement</div></div>
-    </div>
-    <div class="wc wmid rv" data-cat="promo">
-      <div class="wbg vw3">
-        <div class="mpwrap" style="flex-direction:column;gap:1rem">
-          <div style="background:rgba(255,255,255,.05);border:1px solid rgba(106,31,255,.2);border-radius:10px;padding:1rem;width:88%;max-width:230px">
-            <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:.9rem;font-weight:900;color:rgba(180,90,255,.9)">BOROLINE</div>
-            <div style="font-size:.58rem;color:rgba(255,255,255,.25);letter-spacing:.1em;text-transform:uppercase;margin:.3rem 0 .6rem">Roadshow Advertising</div>
-            <div style="display:flex;gap:.4rem">
-              <div style="flex:1;height:22px;border-radius:5px;background:rgba(106,31,255,.12);border:1px solid rgba(106,31,255,.2)"></div>
-              <div style="flex:1;height:22px;border-radius:5px;background:rgba(106,31,255,.25);border:1px solid rgba(106,31,255,.4)"></div>
-            </div>
-          </div>
-          <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:.68rem;font-weight:800;color:var(--lime);letter-spacing:.04em">Roadshow · On-ground</div>
-        </div>
-      </div>
-      <div class="wov"></div><div class="warr">↗</div>
-      <div class="winfo"><div class="wcat">Promotions</div><div class="wname">Boroline — Roadshow Advertising</div><div class="wmeta">Roadshow advertising project</div></div>
-    </div>
-    <div class="wc wmid rv d1" data-cat="promo">
-      <div class="wbg vw4">
-        <div class="mpwrap" style="flex-direction:column;gap:.7rem;padding:1.5rem">
-          <div style="width:90%;background:rgba(255,255,255,.04);border:1px solid rgba(159,217,48,.15);border-radius:10px;padding:1.1rem">
-            <div style="height:4px;width:70%;background:rgba(159,217,48,.4);border-radius:2px;margin-bottom:6px"></div>
-            <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:.75rem;font-weight:800;color:rgba(159,217,48,.8)">Nayara Energy</div>
-            <div style="font-size:.6rem;color:rgba(255,255,255,.25);margin-top:.3rem">Roadshow Advertising Project</div>
-          </div>
-          <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:.68rem;font-weight:800;color:var(--lime);letter-spacing:.04em">Roadshow</div>
-        </div>
-      </div>
-      <div class="wov"></div><div class="warr">↗</div>
-      <span class="rbadge">Energy</span>
-      <div class="winfo"><div class="wcat">Promotions</div><div class="wname">Nayara Energy — Roadshow Advertising</div><div class="wmeta">Roadshow advertising project</div></div>
-    </div>
-    <div class="wc wmid rv" data-cat="transit">
-      <div class="wbg vw1">
-        <div class="mpwrap" style="flex-direction:column;gap:.7rem;padding:1.5rem">
-          <div style="width:90%;background:rgba(255,255,255,.04);border:1px solid rgba(255,92,0,.2);border-radius:10px;padding:1.1rem">
-            <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:.85rem;font-weight:800;color:rgba(255,140,66,.9)">Bus Branding</div>
-            <div style="font-size:.6rem;color:rgba(255,255,255,.25);margin-top:.3rem">For Government</div>
-          </div>
-          <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:.68rem;font-weight:800;color:var(--lime);letter-spacing:.04em">Transit · Government</div>
-        </div>
-      </div>
-      <div class="wov"></div><div class="warr">↗</div>
-      <span class="rbadge">Govt</span>
-      <div class="winfo"><div class="wcat">Transit &amp; Bus Branding</div><div class="wname">Bus Branding for Government</div><div class="wmeta">Government bus branding project</div></div>
-    </div>
-    <div class="wc wmid rv d1" data-cat="promo">
-      <div class="wbg vw2">
-        <div class="mpwrap" style="flex-direction:column;gap:.7rem;padding:1.5rem">
-          <div style="width:90%;background:rgba(255,255,255,.04);border:1px solid rgba(106,31,255,.2);border-radius:10px;padding:1.1rem">
-            <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:.85rem;font-weight:800;color:rgba(180,90,255,.9)">Auto Advertising</div>
-            <div style="font-size:.6rem;color:rgba(255,255,255,.25);margin-top:.3rem">On-ground · Transit</div>
-          </div>
-          <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:.68rem;font-weight:800;color:var(--lime);letter-spacing:.04em">Promotions</div>
-        </div>
-      </div>
-      <div class="wov"></div><div class="warr">↗</div>
-      <span class="rbadge">Auto</span>
-      <div class="winfo"><div class="wcat">Promotions</div><div class="wname">Auto Advertising</div><div class="wmeta">Auto advertising campaigns</div></div>
-    </div>
+  <div class="work-bento rv" id="workBento">
+    <div class="work-cat-card" role="button" tabindex="0" onclick="openWorkGallery('acp')" onkeydown="if(event.key==='Enter')openWorkGallery('acp')"><img src="assets/ACP WORKS/PHOTO-2024-06-24-20-49-25 2.jpg" alt=""/><div class="over"><span class="cat-name">ACP &amp; Fabrication</span><span class="cat-meta">Boards, signage, fabrication</span><span class="view-tag">View gallery</span></div></div>
+    <div class="work-cat-card" role="button" tabindex="0" onclick="openWorkGallery('auto')" onkeydown="if(event.key==='Enter')openWorkGallery('auto')"><img src="assets/Auto branding /PHOTO-2024-03-20-22-00-57 2.jpg" alt=""/><div class="over"><span class="cat-name">Auto Branding</span><span class="cat-meta">Vehicle wraps &amp; branding</span><span class="view-tag">View gallery</span></div></div>
+    <div class="work-cat-card" role="button" tabindex="0" onclick="openWorkGallery('bus')" onkeydown="if(event.key==='Enter')openWorkGallery('bus')"><img src="assets/Bus branding /PHOTO-2024-03-21-22-13-05 2.jpg" alt=""/><div class="over"><span class="cat-name">Bus Branding</span><span class="cat-meta">Transit &amp; government</span><span class="view-tag">View gallery</span></div></div>
+    <div class="work-cat-card" role="button" tabindex="0" onclick="openWorkGallery('events')" onkeydown="if(event.key==='Enter')openWorkGallery('events')"><img src="assets/Events /PHOTO-2024-10-28-14-44-32 2.jpg" alt=""/><div class="over"><span class="cat-name">Events</span><span class="cat-meta">Launches, activations</span><span class="view-tag">View gallery</span></div></div>
+    <div class="work-cat-card" role="button" tabindex="0" onclick="openWorkGallery('glow')" onkeydown="if(event.key==='Enter')openWorkGallery('glow')"><img src="assets/Glow Sign Boards /PHOTO-2024-03-19-13-22-31 2.jpg" alt=""/><div class="over"><span class="cat-name">Glow Sign Boards</span><span class="cat-meta">Neon &amp; illuminated</span><span class="view-tag">View gallery</span></div></div>
+    <div class="work-cat-card" role="button" tabindex="0" onclick="openWorkGallery('nonlite')" onkeydown="if(event.key==='Enter')openWorkGallery('nonlite')"><img src="assets/Non Lite Boards /PHOTO-2024-03-19-13-22-34 2.jpg" alt=""/><div class="over"><span class="cat-name">Non Lite Boards</span><span class="cat-meta">Display boards</span><span class="view-tag">View gallery</span></div></div>
+    <div class="work-cat-card" role="button" tabindex="0" onclick="openWorkGallery('promotions')" onkeydown="if(event.key==='Enter')openWorkGallery('promotions')"><img src="assets/Promotions/PHOTO-2024-03-20-22-05-34 2.jpg" alt=""/><div class="over"><span class="cat-name">Promotions</span><span class="cat-meta">On-ground campaigns</span><span class="view-tag">View gallery</span></div></div>
+    <div class="work-cat-card" role="button" tabindex="0" onclick="openWorkGallery('standee')" onkeydown="if(event.key==='Enter')openWorkGallery('standee')"><img src="assets/Standee /PHOTO-2024-02-11-21-49-42 2.jpg" alt=""/><div class="over"><span class="cat-name">Standees</span><span class="cat-meta">Floor &amp; display standees</span><span class="view-tag">View gallery</span></div></div>
+    <div class="work-cat-card" role="button" tabindex="0" onclick="openWorkGallery('barriguard')" onkeydown="if(event.key==='Enter')openWorkGallery('barriguard')"><img src="assets/barriguard/PHOTO-2024-03-20-22-01-52.jpg" alt=""/><div class="over"><span class="cat-name">Barriguard</span><span class="cat-meta">Brand projects</span><span class="view-tag">View gallery</span></div></div>
+    <div class="work-cat-card" role="button" tabindex="0" onclick="openWorkGallery('inshop')" onkeydown="if(event.key==='Enter')openWorkGallery('inshop')"><img src="assets/inshop branding /PHOTO-2024-03-01-13-58-08 2.jpg" alt=""/><div class="over"><span class="cat-name">In-Shop Branding</span><span class="cat-meta">Retail &amp; POS</span><span class="view-tag">View gallery</span></div></div>
+    <div class="work-cat-card" role="button" tabindex="0" onclick="openWorkGallery('roadshow')" onkeydown="if(event.key==='Enter')openWorkGallery('roadshow')"><img src="assets/roadshow /PHOTO-2024-03-20-22-03-17 2.jpg" alt=""/><div class="over"><span class="cat-name">Roadshow</span><span class="cat-meta">On-ground roadshows</span><span class="view-tag">View gallery</span></div></div>
+    <div class="work-cat-card" role="button" tabindex="0" onclick="openWorkGallery('sunpack')" onkeydown="if(event.key==='Enter')openWorkGallery('sunpack')"><img src="assets/sunpack printing /PHOTO-2024-03-20-22-08-56.jpg" alt=""/><div class="over"><span class="cat-name">Sunpack Printing</span><span class="cat-meta">Print projects</span><span class="view-tag">View gallery</span></div></div>
+    <div class="work-cat-card" role="button" tabindex="0" onclick="openWorkGallery('wall')" onkeydown="if(event.key==='Enter')openWorkGallery('wall')"><img src="assets/wall painting /PHOTO-2024-03-19-13-22-36 4.jpg" alt=""/><div class="over"><span class="cat-name">Wall Painting</span><span class="cat-meta">Murals &amp; wall branding</span><span class="view-tag">View gallery</span></div></div>
   </div>
 </div>
 </section>
@@ -683,6 +633,20 @@ footer{background:var(--dark);padding:4rem 5% 2rem}
 </section>
 </div>
 
+<!-- WORK GALLERY LIGHTBOX (all categories) -->
+<div class="work-modal" id="workGalleryModal" role="dialog" aria-label="Work gallery">
+  <div class="work-modal-backdrop" onclick="closeWorkGallery()"></div>
+  <div class="work-modal-box">
+    <div class="work-modal-header">
+      <h3 class="work-modal-title" id="workModalTitle">Gallery</h3>
+      <button type="button" class="work-modal-close" onclick="closeWorkGallery()" aria-label="Close gallery">×</button>
+    </div>
+    <div class="work-modal-body">
+      <div class="work-gallery-grid" id="workGalleryGrid"></div>
+    </div>
+  </div>
+</div>
+
 <!-- FLOATING WHATSAPP BUTTON -->
 <div class="wa-float">
   <span class="wa-float-tooltip">Chat with us on WhatsApp</span>
@@ -756,11 +720,35 @@ function cnt(){
   });
 }
 
-// WORK FILTER
-function fw(cat,btn){
-  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));btn.classList.add('on');
-  document.querySelectorAll('.wc').forEach(c=>{c.style.display=cat==='all'||c.dataset.cat===cat?'block':'none'});
+// WORK GALLERIES — folder path + image filenames (from your project folders)
+const WORK_GALLERIES={
+  acp:{ title:'ACP & Fabrication', folder:'assets/ACP WORKS', images:['PHOTO-2024-02-10-11-27-25 2.jpg','PHOTO-2024-02-10-11-27-25 4.jpg','PHOTO-2024-03-06-16-53-00 2.jpg','PHOTO-2024-03-19-13-22-30 2.jpg','PHOTO-2024-03-19-13-22-33 3.jpg','PHOTO-2024-03-19-13-22-34 4.jpg','PHOTO-2024-03-19-13-22-34 5.jpg','PHOTO-2024-03-19-13-22-34 8.jpg','PHOTO-2024-03-21-01-30-29 2.jpg','PHOTO-2024-03-21-01-30-29 3.jpg','PHOTO-2024-03-21-01-31-18.jpg','PHOTO-2024-06-24-20-49-20 2.jpg','PHOTO-2024-06-24-20-49-25 2.jpg','PHOTO-2024-08-12-22-11-17 3.jpg','PHOTO-2024-08-12-22-11-17.jpg','PHOTO-2026-01-29-00-46-06.jpg','PHOTO-2026-01-29-00-51-24 2.jpg','PHOTO-2026-01-29-00-51-24.jpg','PHOTO-2026-02-12-13-47-53.jpg'] },
+  auto:{ title:'Auto Branding', folder:'assets/Auto branding ', images:['PHOTO-2024-03-20-22-00-57 2.jpg','PHOTO-2024-03-20-22-00-58 2.jpg','PHOTO-2024-03-20-22-00-58 3.jpg','PHOTO-2024-03-20-22-00-59 2.jpg','PHOTO-2026-01-29-01-04-38 2.jpg','PHOTO-2026-01-29-01-04-38 6.jpg','PHOTO-2026-01-29-01-04-38.jpg','PHOTO-2026-01-29-01-04-39 3.jpg','PHOTO-2026-01-29-01-04-39.jpg'] },
+  bus:{ title:'Bus Branding', folder:'assets/Bus branding ', images:['PHOTO-2024-03-21-22-13-05 2.jpg','PHOTO-2024-03-21-22-13-06 2.jpg','PHOTO-2024-03-21-22-13-06 4.jpg','PHOTO-2024-03-21-22-13-06 6.jpg','PHOTO-2024-03-21-22-13-06 8.jpg'] },
+  events:{ title:'Events', folder:'assets/Events ', images:['PHOTO-2024-10-28-14-44-32 2.jpg','PHOTO-2024-10-28-14-44-32 3.jpg','PHOTO-2024-10-28-14-44-33 2.jpg','PHOTO-2024-10-28-14-44-33.jpg','PHOTO-2025-01-04-11-29-00 2.jpg','PHOTO-2025-01-04-11-29-00.jpg','PHOTO-2025-01-04-11-29-01 2.jpg','PHOTO-2025-01-04-11-29-01.jpg'] },
+  glow:{ title:'Glow Sign Boards', folder:'assets/Glow Sign Boards ', images:['PHOTO-2024-03-19-13-22-31 2.jpg','PHOTO-2024-03-19-13-22-36 2.jpg','PHOTO-2024-03-19-13-22-36 3.jpg','PHOTO-2024-03-21-22-02-59 4.jpg','PHOTO-2024-03-21-22-27-24 2.jpg','PHOTO-2024-03-21-22-27-46 2.jpg','PHOTO-2024-07-24-11-37-13 2.jpg','PHOTO-2024-07-24-11-37-13 6.jpg','PHOTO-2024-07-24-11-37-13.jpg','PHOTO-2024-10-11-18-14-49.jpg','PHOTO-2024-11-16-18-27-32.jpg','PHOTO-2025-07-28-11-24-51 2.jpg','PHOTO-2025-10-09-20-08-49 2.jpg','PHOTO-2025-11-19-17-23-04 2.jpg','PHOTO-2025-11-19-17-23-05 2.jpg','PHOTO-2026-01-29-00-46-38 3.jpg','PHOTO-2026-01-29-00-53-19.jpg','PHOTO-2026-01-29-21-23-36.jpg','PHOTO-2026-02-18-17-51-51.jpg'] },
+  nonlite:{ title:'Non Lite Boards', folder:'assets/Non Lite Boards ', images:['PHOTO-2024-03-19-13-22-34 2.jpg','PHOTO-2025-07-28-11-24-46.jpg','PHOTO-2025-07-28-11-24-47 2.jpg','PHOTO-2025-10-08-17-52-13.jpg','PHOTO-2025-11-19-17-29-18.jpg','PHOTO-2025-11-19-17-30-37 2.jpg','PHOTO-2026-01-29-00-53-18.jpg'] },
+  promotions:{ title:'Promotions', folder:'assets/Promotions', images:['0c90e9e7-3095-4775-b8d2-d35bb5c295f4.JPG','5c1d847c-667c-4bd7-b37c-68e249bb64f5.JPG','PHOTO-2024-03-20-22-05-34 2.jpg','PHOTO-2024-03-20-22-05-34 3.jpg','PHOTO-2024-03-20-22-05-35 3.jpg','PHOTO-2024-03-20-22-05-35 4.jpg','PHOTO-2024-03-21-22-17-51 2.jpg','PHOTO-2026-01-29-00-37-00.jpg','PHOTO-2026-01-29-00-38-01.jpg','PHOTO-2026-01-29-00-43-40 2.jpg'] },
+  standee:{ title:'Standees', folder:'assets/Standee ', images:['PHOTO-2024-02-11-21-49-42 2.jpg','PHOTO-2025-05-07-14-04-14 2.jpg','PHOTO-2025-09-24-19-37-40.jpg','PHOTO-2025-12-08-11-42-00.jpg','PHOTO-2026-01-29-00-30-35 4.jpg','PHOTO-2026-01-29-00-30-35.jpg','PHOTO-2026-01-29-00-47-05 2.jpg','PHOTO-2026-01-29-00-47-05 3.jpg','PHOTO-2026-01-29-00-47-05.jpg','WhatsApp Image 2026-03-04 at 8.07.50 PM.jpeg'] },
+  barriguard:{ title:'Barriguard', folder:'assets/barriguard', images:['PHOTO-2024-03-20-22-01-52.jpg','PHOTO-2024-03-20-22-01-53 2.jpg','PHOTO-2024-03-20-22-01-53.jpg','PHOTO-2024-03-20-22-02-02 2.jpg','PHOTO-2024-03-20-22-02-02.jpg'] },
+  inshop:{ title:'In-Shop Branding', folder:'assets/inshop branding ', images:['PHOTO-2024-03-01-13-58-08 2.jpg','PHOTO-2024-03-19-13-22-33 2.jpg','PHOTO-2024-03-19-13-22-34 3.jpg','PHOTO-2024-07-08-23-13-55 2.jpg','PHOTO-2024-07-08-23-13-57 2.jpg','PHOTO-2024-07-08-23-14-02 2.jpg','PHOTO-2025-02-06-18-48-45 2.jpg','PHOTO-2025-02-06-19-16-00 2.jpg','PHOTO-2025-02-06-19-16-01 2.jpg','PHOTO-2025-02-06-19-16-01.jpg','PHOTO-2025-02-06-19-16-29 2.jpg','PHOTO-2025-09-09-13-24-12 2.jpg','PHOTO-2025-10-09-21-03-52 4.jpg','PHOTO-2026-01-29-00-32-14.jpg','PHOTO-2026-01-29-01-00-37 2.jpg','PHOTO-2026-02-19-13-06-41 4.jpg'] },
+  roadshow:{ title:'Roadshow', folder:'assets/roadshow ', images:['PHOTO-2024-03-20-22-03-17 2.jpg','PHOTO-2024-03-20-22-03-17.jpg','PHOTO-2024-03-20-22-03-18.jpg','PHOTO-2024-03-21-01-33-31.jpg','PHOTO-2024-03-21-01-33-32 2.jpg','PHOTO-2024-03-21-01-33-32 3.jpg','PHOTO-2024-03-21-22-17-01 10.jpg','PHOTO-2024-03-21-22-17-01 2.jpg','PHOTO-2024-03-21-22-17-01 4.jpg','PHOTO-2024-03-21-22-17-01 8.jpg','PHOTO-2024-05-23-13-19-48 2.jpg','PHOTO-2025-01-20-19-09-57.jpg','PHOTO-2025-01-20-19-09-58 3.jpg','PHOTO-2025-01-20-19-09-58 6.jpg','PHOTO-2025-01-20-19-09-58 8.jpg','PHOTO-2025-01-20-19-09-58.jpg','PHOTO-2026-01-29-00-37-39 2.jpg','PHOTO-2026-01-29-00-37-39 3.jpg','PHOTO-2026-01-29-00-37-39 4.jpg','PHOTO-2026-01-29-00-37-39 5.jpg','PHOTO-2026-01-29-00-37-39.jpg'] },
+  sunpack:{ title:'Sunpack Printing', folder:'assets/sunpack printing ', images:['PHOTO-2024-03-20-22-08-56.jpg','PHOTO-2024-03-20-22-08-57 3.jpg','PHOTO-2024-03-20-22-08-57 4.jpg','PHOTO-2024-03-20-22-08-58 2.jpg'] },
+  wall:{ title:'Wall Painting', folder:'assets/wall painting ', images:['4d6771ec-229a-4620-8f7a-a382dd44ebfa.JPG','61003a59-cd3f-4ca7-8261-a9331de8a75b.JPG','PHOTO-2024-03-19-13-22-36 4.jpg','PHOTO-2024-03-19-13-22-37 2.jpg','PHOTO-2024-03-19-13-22-37 3.jpg','PHOTO-2024-03-19-13-22-37.jpg','PHOTO-2024-03-19-13-22-39 3.jpg','PHOTO-2024-03-19-13-22-39 4.jpg','PHOTO-2024-03-21-01-34-10 2.jpg','PHOTO-2024-03-21-01-34-11 2.jpg','PHOTO-2024-03-21-01-34-11 4.jpg','PHOTO-2024-03-21-01-34-12.jpg','PHOTO-2024-07-06-15-23-12 2.jpg','PHOTO-2024-07-06-15-24-27 2.jpg','PHOTO-2024-07-06-15-24-42 2.jpg','PHOTO-2024-07-06-15-25-21 2.jpg','PHOTO-2024-07-06-15-33-03 2.jpg','PHOTO-2024-09-16-13-52-49 2.jpg','PHOTO-2024-09-17-17-40-09 2.jpg','PHOTO-2024-09-18-15-30-34 2.jpg','PHOTO-2024-09-18-15-30-40 2.jpg','PHOTO-2024-09-25-20-27-59 2.jpg','PHOTO-2024-09-25-20-27-59 3.jpg','PHOTO-2024-09-25-20-27-59 4.jpg','PHOTO-2025-05-04-12-01-43 2.jpg','PHOTO-2025-05-04-12-01-46.jpg','PHOTO-2025-05-20-14-51-02 2.jpg','PHOTO-2025-05-20-14-51-02 5.jpg','PHOTO-2025-05-20-14-51-02 6.jpg','PHOTO-2025-05-20-14-51-02.jpg','PHOTO-2025-05-21-19-56-45.jpg','PHOTO-2025-06-04-12-57-30.jpg'] }
+};
+function openWorkGallery(key){
+  const g=WORK_GALLERIES[key]; if(!g)return;
+  const m=document.getElementById('workGalleryModal'), titleEl=document.getElementById('workModalTitle'), gridEl=document.getElementById('workGalleryGrid');
+  if(!m||!titleEl||!gridEl)return;
+  titleEl.textContent=g.title;
+  gridEl.innerHTML=g.images.map(f=>'<img src="'+g.folder+'/'+f.replace(/"/g,'&quot;')+'" alt=""/>').join('');
+  m.classList.add('open'); document.body.style.overflow='hidden';
 }
+function closeWorkGallery(){
+  const m=document.getElementById('workGalleryModal');
+  if(m){ m.classList.remove('open'); document.body.style.overflow=''; }
+}
+document.addEventListener('keydown',function(e){ if(e.key==='Escape')closeWorkGallery(); });
 
 // HAMBURGER
 function toggleMob(){
