@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="theme-color" content="#ff5c00"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="default"/>
 <title>South Ads — India's Premier Advertising Company</title>
 <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Satoshi:wght@300;400;500;700&display=swap" rel="stylesheet"/>
 <style>
@@ -14,8 +17,8 @@
   --dark:#0e0c0a;--mid:#1c1814;
   --text:#241e16;--muted:#8a7a6a;--border:rgba(36,30,22,.1);
 }
-html{scroll-behavior:smooth}
-body{background:var(--cream);color:var(--text);font-family:'Satoshi',sans-serif;overflow-x:hidden;cursor:none}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(255,92,0,.15)}
+body{background:var(--cream);color:var(--text);font-family:'Satoshi',sans-serif;overflow-x:hidden;cursor:none;-webkit-overflow-scrolling:touch}
 
 /* CURSOR */
 #cur{position:fixed;width:10px;height:10px;border-radius:50%;background:var(--orange);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .22s,height .22s}
@@ -31,18 +34,18 @@ nav.sh{box-shadow:0 6px 32px rgba(0,0,0,.1)}
 .nl a:hover,.nl a.on{color:var(--text);background:rgba(36,30,22,.07)}
 .npill{background:var(--orange);color:#fff;font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:.76rem;padding:.55rem 1.3rem;border-radius:100px;text-decoration:none;transition:all .2s}
 .npill:hover{background:var(--orange2);transform:scale(1.04)}
-/* hamburger */
-.hbtn{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
+/* hamburger - 44px min touch target for mobile */
+.hbtn{display:none;flex-direction:column;gap:5px;align-items:center;justify-content:center;background:none;border:none;cursor:pointer;padding:12px;min-width:44px;min-height:44px;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .hbtn span{display:block;width:20px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
 .hbtn.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .hbtn.open span:nth-child(2){opacity:0}
 .hbtn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 /* mob menu */
-.mob-menu{display:none;position:fixed;inset:0;background:rgba(250,247,242,.97);backdrop-filter:blur(20px);z-index:690;flex-direction:column;align-items:center;justify-content:center;gap:.3rem}
+.mob-menu{display:none;position:fixed;inset:0;background:rgba(250,247,242,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);z-index:690;flex-direction:column;align-items:center;justify-content:center;gap:0;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
 .mob-menu.open{display:flex}
-.mob-menu a{font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:2.2rem;color:rgba(36,30,22,.55);text-decoration:none;padding:.6rem 2rem;transition:color .2s;letter-spacing:-.03em}
+.mob-menu a{font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:2.2rem;color:rgba(36,30,22,.55);text-decoration:none;padding:.85rem 2rem;min-height:48px;display:inline-flex;align-items:center;justify-content:center;transition:color .2s;letter-spacing:-.03em;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .mob-menu a:hover{color:var(--orange)}
-.mob-pill{background:var(--orange);color:#fff !important;font-size:1rem !important;padding:.9rem 2.5rem !important;border-radius:100px;margin-top:1rem}
+.mob-pill{background:var(--orange);color:#fff !important;font-size:1rem !important;padding:1rem 2.5rem !important;min-height:48px;display:inline-flex;align-items:center;justify-content:center;border-radius:100px;margin-top:1rem;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 
 /* PAGES */
 .pg{display:none;min-height:100vh}
@@ -59,7 +62,7 @@ nav.sh{box-shadow:0 6px 32px rgba(0,0,0,.1)}
 .slbl{display:inline-flex;align-items:center;gap:.45rem;font-size:.67rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);margin-bottom:.7rem}
 .stitle{font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:clamp(2rem,4vw,3.8rem);line-height:1;letter-spacing:-.04em;color:var(--text);margin-bottom:1rem}
 .ssub{font-size:.97rem;color:var(--muted);line-height:1.78;max-width:520px}
-.btn-or{background:var(--orange);color:#fff;font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:.86rem;text-decoration:none;padding:.95rem 2.2rem;border-radius:100px;display:inline-block;transition:all .2s;box-shadow:0 4px 20px rgba(255,92,0,.28)}
+.btn-or{background:var(--orange);color:#fff;font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:.86rem;text-decoration:none;padding:.95rem 2.2rem;border-radius:100px;display:inline-block;transition:all .2s;box-shadow:0 4px 20px rgba(255,92,0,.28);min-height:48px;box-sizing:border-box;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .btn-or:hover{background:var(--orange2);transform:translateY(-3px);box-shadow:0 8px 32px rgba(255,92,0,.38)}
 .btn-lt{color:var(--text);font-weight:600;font-size:.86rem;text-decoration:none;border-bottom:1.5px solid transparent;transition:border-color .2s;display:inline-flex;align-items:center;gap:.35rem}
 .btn-lt:hover{border-color:var(--orange)}
@@ -107,31 +110,17 @@ nav.sh{box-shadow:0 6px 32px rgba(0,0,0,.1)}
 
 /* BRAND SCROLLER */
 .bscroll{overflow:hidden;padding:3rem 0;background:var(--warm)}
-.brow{display:flex;gap:1rem;animation:bsc 28s linear infinite;width:max-content}
+.brow{display:flex;gap:1rem;animation:bsc 55s linear infinite;width:max-content}
 .bpill{background:var(--paper);border:1px solid var(--border);border-radius:14px;padding:1.1rem 1.8rem;display:flex;align-items:center;gap:.9rem;flex-shrink:0;transition:border-color .3s}
 .bpill:hover{border-color:var(--orange)}
-.bava{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:.85rem}
+.bava{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:.85rem;flex-shrink:0;overflow:hidden;position:relative;background:var(--paper)}
+.bava img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:4px}
+.bava .bava-initials{display:flex;align-items:center;justify-content:center;width:100%;height:100%}
+.bava img[data-loaded="true"]~.bava-initials{display:none}
 .bname{font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:.88rem;color:var(--text)}
 .bind{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
 @keyframes bsc{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* TESTIMONIALS */
-.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
-.tc{background:var(--paper);border:1px solid var(--border);border-radius:22px;padding:1.8rem;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s}
-.tc:hover{transform:translateY(-4px);box-shadow:0 18px 45px rgba(0,0,0,.07)}
-.tc.feat{background:var(--dark);border-color:transparent}
-.tstars{color:var(--orange);font-size:.85rem;letter-spacing:.05em;margin-bottom:1.1rem}
-.tc.feat .tstars{color:var(--lime)}
-.tq{font-size:.9rem;line-height:1.72;color:var(--text);margin-bottom:1.4rem}
-.tc.feat .tq{color:rgba(255,255,255,.72)}
-.tauth{display:flex;align-items:center;gap:.75rem}
-.tava{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:.82rem}
-.tname{font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:.88rem;color:var(--text)}
-.tc.feat .tname{color:#fff}
-.trole{font-size:.7rem;color:var(--muted)}
-.tc.feat .trole{color:rgba(255,255,255,.32)}
-.tbg{position:absolute;bottom:-12px;right:-4px;font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:5rem;color:rgba(0,0,0,.035);pointer-events:none;line-height:1}
-.tc.feat .tbg{color:rgba(255,255,255,.035)}
 
 /* CTA STRIP */
 .cstrip{padding:5.5rem 5%;background:var(--dark);text-align:center}
@@ -144,7 +133,7 @@ nav.sh{box-shadow:0 6px 32px rgba(0,0,0,.1)}
 .bc:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(0,0,0,.07);border-color:rgba(255,92,0,.2)}
 .c1{grid-column:span 5;grid-row:span 2}.c2{grid-column:span 4}.c3{grid-column:span 3}
 .c4{grid-column:span 8}.c5{grid-column:span 4}.c6{grid-column:span 4}.c7{grid-column:span 4}.c8{grid-column:span 4}
-.c9{grid-column:span 6}.c10{grid-column:span 6}.c11{grid-column:span 4}
+.c9{grid-column:span 6}.c10{grid-column:span 6}.c11{grid-column:span 4}.c12{grid-column:span 6}.c13{grid-column:span 6}
 .cnum{font-family:'Cabinet Grotesk',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.15em;color:var(--muted);margin-bottom:1.4rem}
 .cico{width:48px;height:48px;border-radius:13px;display:flex;align-items:center;justify-content:center;margin-bottom:1.1rem;font-size:1.3rem}
 .cname{font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:1.15rem;color:var(--text);margin-bottom:.45rem;letter-spacing:-.02em;line-height:1.15}
@@ -184,26 +173,30 @@ nav.sh{box-shadow:0 6px 32px rgba(0,0,0,.1)}
 .mpline{height:3px;border-radius:2px;background:rgba(255,255,255,.1);margin-bottom:4px}
 
 /* ═══ ABOUT ═══ */
-.agrid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.agrid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
 .avis{background:var(--dark);border-radius:28px;padding:2.8rem;position:relative;overflow:hidden}
 .avis::before{content:'';position:absolute;top:-100px;right:-100px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(255,92,0,.17),transparent 70%);pointer-events:none}
 .av4{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.06);border-radius:14px;overflow:hidden}
-.avb{background:var(--mid);padding:1.4rem;transition:background .2s}
+.avb{background:var(--mid);padding:1.4rem;transition:background .2s;display:flex;flex-direction:column;align-items:center;text-align:center}
 .avb:hover{background:#252018}
-.avb .n{font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:2rem;color:var(--orange);line-height:1;letter-spacing:-.04em}
-.avb .l{font-size:.68rem;color:rgba(255,255,255,.28);text-transform:uppercase;letter-spacing:.1em;margin-top:.25rem}
+.avb .n{font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:2rem;color:var(--orange);line-height:1;letter-spacing:-.04em;display:block}
+.avb .l{font-size:.68rem;color:rgba(255,255,255,.28);text-transform:uppercase;letter-spacing:.1em;margin-top:.25rem;display:block}
 .abadges{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.8rem}
 .abadge{background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);font-size:.72rem;font-weight:600;padding:.35rem .9rem;border-radius:100px;border:1px solid rgba(255,255,255,.08)}
 .apts{list-style:none;margin-top:1.4rem;display:flex;flex-direction:column;gap:.75rem}
-.apts li{display:flex;align-items:center;gap:.7rem;font-size:.9rem;color:var(--muted)}
-.aptdot{width:26px;height:26px;border-radius:8px;background:rgba(255,92,0,.1);display:flex;align-items:center;justify-content:center;font-size:.72rem;flex-shrink:0}
-.vals{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:4rem}
+.apts li{display:flex;align-items:flex-start;gap:.7rem;font-size:.9rem;color:var(--muted);line-height:1.5}
+.aptdot{width:26px;height:26px;border-radius:8px;background:rgba(255,92,0,.1);display:flex;align-items:center;justify-content:center;font-size:.72rem;flex-shrink:0;margin-top:.15em}
+.vals{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:4rem;max-width:1100px;margin-left:auto;margin-right:auto;padding:0 1rem}
 
 /* ═══ CONTACT / WHATSAPP ═══ */
 .cwrap{background:var(--dark);border-radius:28px;padding:4rem;max-width:1200px;margin:0 auto;position:relative;overflow:hidden}
 .cwrap::before{content:'';position:absolute;top:-180px;left:-180px;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,rgba(37,211,102,.13),transparent 70%);pointer-events:none}
 .cwrap::after{content:'';position:absolute;bottom:-140px;right:-90px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(232,48,106,.1),transparent 70%);pointer-events:none}
 .cgrid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;position:relative;z-index:1}
+.map-box{display:block;width:100%;max-width:320px;aspect-ratio:1;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.1);margin-top:1.5rem;position:relative;box-shadow:0 8px 32px rgba(0,0,0,.3);transition:transform .2s,border-color .2s}
+.map-box:hover{transform:scale(1.02);border-color:rgba(255,92,0,.35)}
+.map-box iframe{position:absolute;inset:0;width:100%;height:100%;border:0;pointer-events:none}
+.map-box .map-label{position:absolute;bottom:0;left:0;right:0;padding:.5rem .75rem;background:linear-gradient(to top,rgba(14,12,10,.95),transparent);font-size:.7rem;font-weight:700;letter-spacing:.1em;color:var(--orange);text-align:center;pointer-events:none}
 /* WhatsApp chat card */
 .wa-card{background:rgba(255,255,255,.04);border:1px solid rgba(37,211,102,.18);border-radius:22px;padding:2rem;display:flex;flex-direction:column;gap:1.4rem}
 .wa-header{display:flex;align-items:center;gap:1rem}
@@ -220,8 +213,8 @@ nav.sh{box-shadow:0 6px 32px rgba(0,0,0,.1)}
 .wa-btn svg{width:22px;height:22px;fill:#fff;flex-shrink:0}
 .wa-note{font-size:.72rem;color:rgba(255,255,255,.2);text-align:center}
 /* Floating WhatsApp button */
-.wa-float{position:fixed;bottom:1.8rem;right:1.8rem;z-index:800;display:flex;flex-direction:column;align-items:flex-end;gap:.6rem}
-.wa-float-btn{width:60px;height:60px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 28px rgba(37,211,102,.45);cursor:pointer;transition:all .25s;text-decoration:none;border:none;position:relative}
+.wa-float{position:fixed;bottom:calc(1.8rem + env(safe-area-inset-bottom));right:calc(1.8rem + env(safe-area-inset-right));z-index:800;display:flex;flex-direction:column;align-items:flex-end;gap:.6rem}
+.wa-float-btn{width:56px;height:56px;min-width:56px;min-height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 28px rgba(37,211,102,.45);cursor:pointer;transition:all .25s;text-decoration:none;border:none;position:relative;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .wa-float-btn:hover{transform:scale(1.1);box-shadow:0 10px 36px rgba(37,211,102,.55)}
 .wa-float-btn svg{width:30px;height:30px;fill:#fff}
 .wa-float-pulse{position:absolute;inset:0;border-radius:50%;background:rgba(37,211,102,.4);animation:wapulse 2s ease-out infinite}
@@ -245,7 +238,7 @@ footer{background:var(--dark);padding:4rem 5% 2rem}
 @media(max-width:960px){
   .sec{padding:4.5rem 5%}
   .bento{grid-template-columns:1fr 1fr}
-  .c1,.c2,.c3,.c4,.c5,.c6,.c7,.c8,.c9,.c10,.c11{grid-column:span 1;grid-row:span 1}
+  .c1,.c2,.c3,.c4,.c5,.c6,.c7,.c8,.c9,.c10,.c11,.c12,.c13{grid-column:span 1;grid-row:span 1}
   .wgrid{grid-template-columns:1fr 1fr}
   .wbig,.wsm,.wmid{grid-column:span 1;height:260px}
   .sgrid{grid-template-columns:repeat(2,1fr);gap:1.5rem}
@@ -258,37 +251,47 @@ footer{background:var(--dark);padding:4rem 5% 2rem}
 @media(max-width:600px){
   #cur,#cur2{display:none}
   body{cursor:auto}
-  nav{width:92%;gap:0;padding:.6rem .85rem .6rem 1.3rem;justify-content:space-between}
+  nav{width:92%;max-width:100%;gap:0;padding:.6rem .85rem .6rem 1.3rem;justify-content:space-between;padding-top:max(.6rem,env(safe-area-inset-top))}
   .nl,.npill{display:none}
   .hbtn{display:flex}
-  .hero{padding:5.5rem 6% 3rem;min-height:100svh}
+  .hero{padding:5.5rem 6% 3rem;min-height:100svh;min-height:100dvh;padding-top:max(5.5rem,calc(5rem + env(safe-area-inset-top)))}
   .h-title{font-size:2.8rem;line-height:.93}
   .h-badge{font-size:.6rem}
   .h-ctas{flex-direction:column;width:100%;gap:.7rem}
-  .btn-or{text-align:center;width:100%;padding:.9rem 1.5rem}
+  .btn-or{text-align:center;width:100%;padding:1rem 1.5rem;min-height:48px}
   .chip{display:none}
-  .sec{padding:3.5rem 5%}
+  .sec{padding:3.5rem 5%;padding-left:max(5%,env(safe-area-inset-left));padding-right:max(5%,env(safe-area-inset-right))}
   .stitle{font-size:clamp(1.9rem,7vw,2.6rem)}
   .bento{grid-template-columns:1fr}
   .bc{padding:1.5rem}
   .wgrid{grid-template-columns:1fr}
   .wbig,.wsm,.wmid{grid-column:span 1;height:240px}
   .wfilter{gap:.4rem}
-  .fb{font-size:.72rem;padding:.42rem .95rem}
+  .fb{font-size:.8rem;padding:.6rem 1.1rem;min-height:44px;display:inline-flex;align-items:center;touch-action:manipulation}
   .tgrid{grid-template-columns:1fr;gap:1rem}
   .agrid{grid-template-columns:1fr;gap:2rem}
   .avis{padding:1.8rem}
   .avb .n{font-size:1.6rem}
   .vals{grid-template-columns:1fr}
-  .cwrap{padding:1.8rem 1.4rem;border-radius:20px}
+  .cwrap{padding:1.8rem 1.4rem;border-radius:20px;margin-left:env(safe-area-inset-left);margin-right:env(safe-area-inset-right)}
   .cgrid{grid-template-columns:1fr;gap:2rem}
   .crow{grid-template-columns:1fr}
-  .bsend{width:100%;text-align:center;align-self:stretch;padding:.9rem}
+  .bsend{width:100%;text-align:center;align-self:stretch;padding:1rem .9rem;min-height:48px}
   .ftop{grid-template-columns:1fr;gap:1.8rem}
-  .fbot{flex-direction:column;gap:.5rem;text-align:center}
+  .fbot{flex-direction:column;gap:.5rem;text-align:center;padding-bottom:max(1.8rem,env(safe-area-inset-bottom))}
   .sgrid{grid-template-columns:1fr 1fr;gap:1rem}
   .sband{padding:2.5rem 5%}
   .sitem .n{font-size:2rem}
+  .fcol a{padding:.35rem 0;min-height:44px;display:flex;align-items:center}
+  .wa-float{bottom:calc(1.2rem + env(safe-area-inset-bottom));right:max(1.2rem,env(safe-area-inset-right))}
+  .wa-float-btn{width:52px;height:52px;min-width:52px;min-height:52px}
+  .map-box{max-width:100%}
+  .cinp,.cform input{font-size:16px}
+}
+@media(max-width:380px){
+  .h-title{font-size:2.4rem}
+  .mob-menu a{font-size:1.85rem}
+  .sec{padding:3rem 4%}
 }
 </style>
 </head>
@@ -315,7 +318,7 @@ footer{background:var(--dark);padding:4rem 5% 2rem}
     <li><a href="#" onclick="go('about',event)" id="l-about">About</a></li>
     <li><a href="#" onclick="go('contact',event)" id="l-contact">Contact</a></li>
   </ul>
-  <a class="npill" href="https://wa.me/916380806930?text=Hi%20South%20Ads!%20I%27m%20interested%20in%20your%20advertising%20services." target="_blank" rel="noopener">Get a Quote →</a>
+  <a class="npill" href="https://wa.me/918870202610?text=Hi%20South%20Ads!%20I%27m%20interested%20in%20your%20advertising%20services." target="_blank" rel="noopener">Get a Quote →</a>
   <button class="hbtn" id="hbtn" onclick="toggleMob()"><span></span><span></span><span></span></button>
 </nav>
 
@@ -327,9 +330,9 @@ footer{background:var(--dark);padding:4rem 5% 2rem}
     <div class="chip" style="top:22%;left:5%;animation-delay:0s"><div class="cdot" style="background:var(--orange)"></div>120+ Brand Campaigns</div>
     <div class="chip" style="top:28%;right:5%;animation-delay:1.5s"><div class="cdot" style="background:var(--lime)"></div>15+ Years of Excellence</div>
     <div class="chip" style="bottom:22%;left:7%;animation-delay:.8s"><div class="cdot" style="background:var(--purple)"></div>Pan-India Reach</div>
-    <div class="h-eye"><div class="hpulse"></div>360° Advertising Solutions</div>
+    <div class="h-eye"><div class="hpulse"></div>Branding &amp; Promotions</div>
     <h1 class="h-title">We Make Your<span class="line2 gr">Brand Unmissable.</span></h1>
-    <p class="h-sub">South Ads is India's premier full-spectrum advertising company delivering outdoor campaigns, brand activations, events, and creative media solutions across the nation.</p>
+    <p class="h-sub">South Ads is India's premier full-spectrum advertising company — printing, fabrication, outdoor campaigns, promotions, bus branding, and creative media solutions across the nation.</p>
     <div class="h-ctas">
       <a class="btn-or" href="#" onclick="go('works',event)">View Our Work ↗</a>
       <a class="btn-lt" href="#" onclick="go('contact',event)">Get a Free Consultation →</a>
@@ -339,8 +342,8 @@ footer{background:var(--dark);padding:4rem 5% 2rem}
 
   <!-- TICKER -->
   <div class="ticker"><div class="ttrack">
-    <span class="titem"><b class="tstar">★</b>Outdoor Advertising</span><span class="titem"><b class="tstar">★</b>Brand Activation</span><span class="titem"><b class="tstar">★</b>Event Management</span><span class="titem"><b class="tstar">★</b>Promotion Campaigns</span><span class="titem"><b class="tstar">★</b>Hoarding &amp; Signage</span><span class="titem"><b class="tstar">★</b>Transit Media</span><span class="titem"><b class="tstar">★</b>Retail Branding</span><span class="titem"><b class="tstar">★</b>360° Media Solutions</span>
-    <span class="titem"><b class="tstar">★</b>Outdoor Advertising</span><span class="titem"><b class="tstar">★</b>Brand Activation</span><span class="titem"><b class="tstar">★</b>Event Management</span><span class="titem"><b class="tstar">★</b>Promotion Campaigns</span><span class="titem"><b class="tstar">★</b>Hoarding &amp; Signage</span><span class="titem"><b class="tstar">★</b>Transit Media</span><span class="titem"><b class="tstar">★</b>Retail Branding</span><span class="titem"><b class="tstar">★</b>360° Media Solutions</span>
+    <span class="titem"><b class="tstar">★</b>UV Roll to Roll</span><span class="titem"><b class="tstar">★</b>Printing</span><span class="titem"><b class="tstar">★</b>Fabrication</span><span class="titem"><b class="tstar">★</b>Bus Branding</span><span class="titem"><b class="tstar">★</b>Promotions</span><span class="titem"><b class="tstar">★</b>Roadshow</span><span class="titem"><b class="tstar">★</b>Outdoor Advertising</span><span class="titem"><b class="tstar">★</b>360° Branding</span>
+    <span class="titem"><b class="tstar">★</b>UV Roll to Roll</span><span class="titem"><b class="tstar">★</b>Printing</span><span class="titem"><b class="tstar">★</b>Fabrication</span><span class="titem"><b class="tstar">★</b>Bus Branding</span><span class="titem"><b class="tstar">★</b>Promotions</span><span class="titem"><b class="tstar">★</b>Roadshow</span><span class="titem"><b class="tstar">★</b>Outdoor Advertising</span><span class="titem"><b class="tstar">★</b>360° Branding</span>
   </div></div>
 
   <!-- STATS -->
@@ -361,52 +364,83 @@ footer{background:var(--dark);padding:4rem 5% 2rem}
         <a class="btn-lt rv" href="#" onclick="go('services',event)">View All Services →</a>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem">
-        <div class="bc rv" style="border-radius:22px"><div class="cico" style="background:rgba(255,92,0,.1)">🏙️</div><div class="cname">Outdoor Advertising</div><div class="cdesc">Hoardings, billboards, transit media and large-format displays that command public attention at scale.</div></div>
-        <div class="bc rv d1" style="border-radius:22px"><div class="cico" style="background:rgba(232,48,106,.1)">🎯</div><div class="cname">Brand Activation</div><div class="cdesc">On-ground programs creating real, measurable interactions between your brand and its consumers.</div></div>
-        <div class="bc rv d2" style="border-radius:22px"><div class="cico" style="background:rgba(106,31,255,.1)">🎪</div><div class="cname">Event Management</div><div class="cdesc">End-to-end event solutions: product launches, exhibitions, trade shows and corporate events.</div></div>
-        <div class="bc rv d3" style="border-radius:22px"><div class="cico" style="background:rgba(0,200,232,.1)">📣</div><div class="cname">Promotion Campaigns</div><div class="cdesc">Integrated BTL &amp; ATL campaigns that build brand recall and generate measurable consumer response.</div></div>
+        <div class="bc rv" style="border-radius:22px"><div class="cico" style="background:rgba(255,92,0,.1)">🖨️</div><div class="cname">Printing &amp; Roll to Roll</div><div class="cdesc">UV Roll to Roll, HP Latex, EVO &amp; Konica solvent — vinyl, fabric, one-way vision, translate &amp; flex printing.</div></div>
+        <div class="bc rv d1" style="border-radius:22px"><div class="cico" style="background:rgba(232,48,106,.1)">🏭</div><div class="cname">Fabrication</div><div class="cdesc">ACP board, glow sign board, standees, floor display racks, wall painting, 3D LED displays.</div></div>
+        <div class="bc rv d2" style="border-radius:22px"><div class="cico" style="background:rgba(106,31,255,.1)">📣</div><div class="cname">Promotions</div><div class="cdesc">Home-to-home, school activity, roadshow and auto advertising — on-ground campaigns that convert.</div></div>
+        <div class="bc rv d3" style="border-radius:22px"><div class="cico" style="background:rgba(0,200,232,.1)">🚌</div><div class="cname">Bus Branding &amp; Transit</div><div class="cdesc">Bus branding for government and brands, auto branding — your message on the move.</div></div>
       </div>
     </div>
   </section>
 
-  <!-- BRANDS -->
+  <!-- BRANDS - Our Happy Clients (from portfolio) -->
   <div class="bscroll">
     <div style="text-align:center;padding:2rem 5%">
       <span class="slbl rv" style="justify-content:center">Trusted By</span>
-      <h2 class="stitle rv" style="text-align:center;font-size:clamp(1.5rem,3vw,2.5rem)">Brands we've amplified</h2>
+      <h2 class="stitle rv" style="text-align:center;font-size:clamp(1.5rem,3vw,2.5rem)">Our happy clients</h2>
     </div>
     <div class="brow">
-      <div class="bpill"><div class="bava" style="background:rgba(255,90,90,.12);color:#ff5a5a">AK</div><div><div class="bname">Aroma Kitchen</div><div class="bind">F&amp;B</div></div></div>
-      <div class="bpill"><div class="bava" style="background:rgba(90,200,255,.12);color:#5ac8ff">FL</div><div><div class="bname">FitLife Studios</div><div class="bind">Fitness</div></div></div>
-      <div class="bpill"><div class="bava" style="background:rgba(212,168,67,.15);color:#d4a843">NV</div><div><div class="bname">Nova Electronics</div><div class="bind">Retail</div></div></div>
-      <div class="bpill"><div class="bava" style="background:rgba(90,255,150,.12);color:#5aff96">GL</div><div><div class="bname">GreenLeaf Organics</div><div class="bind">FMCG</div></div></div>
-      <div class="bpill"><div class="bava" style="background:rgba(180,90,255,.12);color:#b45aff">ZR</div><div><div class="bname">Zenith Realty</div><div class="bind">Real Estate</div></div></div>
-      <div class="bpill"><div class="bava" style="background:rgba(0,200,232,.12);color:#00c8e8">SP</div><div><div class="bname">SunPeak Solar</div><div class="bind">Energy</div></div></div>
-      <div class="bpill"><div class="bava" style="background:rgba(244,114,182,.12);color:#f472b6">MT</div><div><div class="bname">Metro Textiles</div><div class="bind">Apparel</div></div></div>
-      <div class="bpill"><div class="bava" style="background:rgba(255,90,90,.12);color:#ff5a5a">AK</div><div><div class="bname">Aroma Kitchen</div><div class="bind">F&amp;B</div></div></div>
-      <div class="bpill"><div class="bava" style="background:rgba(90,200,255,.12);color:#5ac8ff">FL</div><div><div class="bname">FitLife Studios</div><div class="bind">Fitness</div></div></div>
-      <div class="bpill"><div class="bava" style="background:rgba(212,168,67,.15);color:#d4a843">NV</div><div><div class="bname">Nova Electronics</div><div class="bind">Retail</div></div></div>
-      <div class="bpill"><div class="bava" style="background:rgba(90,255,150,.12);color:#5aff96">GL</div><div><div class="bname">GreenLeaf Organics</div><div class="bind">FMCG</div></div></div>
-      <div class="bpill"><div class="bava" style="background:rgba(180,90,255,.12);color:#b45aff">ZR</div><div><div class="bname">Zenith Realty</div><div class="bind">Real Estate</div></div></div>
-      <div class="bpill"><div class="bava" style="background:rgba(0,200,232,.12);color:#00c8e8">SP</div><div><div class="bname">SunPeak Solar</div><div class="bind">Energy</div></div></div>
-      <div class="bpill"><div class="bava" style="background:rgba(244,114,182,.12);color:#f472b6">MT</div><div><div class="bname">Metro Textiles</div><div class="bind">Apparel</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(255,90,90,.12);color:#ff5a5a"><img src="https://www.google.com/s2/favicons?domain=reliancetrends.com&sz=64" alt="Reliance Trends" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">RT</span></div><div><div class="bname">Reliance Trends</div><div class="bind">Retail</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(74,155,111,.15);color:#2d7a4f"><img src="https://ui-avatars.com/api/?name=Arokya+Milk&size=76&background=2d7a4f&color=fff" alt="Arokya Milk" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">AR</span></div><div><div class="bname">Arokya</div><div class="bind">Dairy</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(212,168,67,.15);color:#d4a843"><img src="https://www.google.com/s2/favicons?domain=apollotyres.com&sz=64" alt="Apollo Tyres" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">AT</span></div><div><div class="bname">Apollo Tyres</div><div class="bind">Automotive</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(90,255,150,.12);color:#5aff96"><img src="https://www.google.com/s2/favicons?domain=apollopharmacy.in&sz=64" alt="Apollo Pharmacy" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">AP</span></div><div><div class="bname">Apollo Pharmacy</div><div class="bind">Healthcare</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(180,90,255,.12);color:#b45aff"><img src="https://www.google.com/s2/favicons?domain=campacola.in&sz=64" alt="Campa Cola" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">CC</span></div><div><div class="bname">Campa Cola</div><div class="bind">Beverages</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(0,200,232,.12);color:#00c8e8"><img src="https://www.google.com/s2/favicons?domain=shyamsteel.com&sz=64" alt="Shyam Steel" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">SS</span></div><div><div class="bname">Shyam Steel</div><div class="bind">Steel</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(244,114,182,.12);color:#f472b6"><img src="https://www.google.com/s2/favicons?domain=jsw.in&sz=64" alt="JSW Steel" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">JS</span></div><div><div class="bname">JSW Steel</div><div class="bind">Steel</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(255,90,90,.12);color:#ff5a5a"><img src="https://www.google.com/s2/favicons?domain=duroflex.com&sz=64" alt="Duroflex" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">DU</span></div><div><div class="bname">Duroflex</div><div class="bind">Sleep Solutions</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(90,200,255,.12);color:#5ac8ff"><img src="https://ui-avatars.com/api/?name=Jersey+Milk&size=76&background=5ac8ff&color=fff" alt="Jersey Milk" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">JM</span></div><div><div class="bname">Jersey Milk</div><div class="bind">Dairy</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(212,168,67,.15);color:#d4a843"><img src="https://www.google.com/s2/favicons?domain=heritagemilk.com&sz=64" alt="Heritage Milk" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">HM</span></div><div><div class="bname">Heritage Milk</div><div class="bind">Dairy</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(90,255,150,.12);color:#2e8b57"><img src="https://ui-avatars.com/api/?name=Thirumala+Milk&size=76&background=2e8b57&color=fff" alt="Thirumala Milk" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">TM</span></div><div><div class="bname">Thirumala Milk</div><div class="bind">Dairy</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(180,90,255,.12);color:#b45aff"><img src="https://www.google.com/s2/favicons?domain=rblbank.com&sz=64" alt="RBL Bank" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">RB</span></div><div><div class="bname">RBL Bank</div><div class="bind">Banking</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(0,200,232,.12);color:#00c8e8"><img src="https://www.google.com/s2/favicons?domain=icicibank.com&sz=64" alt="ICICI Bank" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">IC</span></div><div><div class="bname">ICICI Bank</div><div class="bind">Banking</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(244,114,182,.12);color:#f472b6"><img src="https://www.google.com/s2/favicons?domain=varunbeverages.com&sz=64" alt="Varun Beverages" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">VB</span></div><div><div class="bname">Varun Beverages</div><div class="bind">Beverages</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(255,90,90,.12);color:#ff5a5a"><img src="https://ui-avatars.com/api/?name=Mercelys+Ice+Cream&size=76&background=ff5a5a&color=fff" alt="Mercelys Ice Cream" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">MC</span></div><div><div class="bname">Mercelys Ice Cream</div><div class="bind">F&amp;B</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(90,200,255,.12);color:#5ac8ff"><img src="https://www.google.com/s2/favicons?domain=paytm.com&sz=64" alt="Paytm" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">PT</span></div><div><div class="bname">Paytm</div><div class="bind">Fintech</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(212,168,67,.15);color:#d4a843"><img src="https://www.google.com/s2/favicons?domain=iocl.com&sz=64" alt="Indian Oil" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">IO</span></div><div><div class="bname">Indian Oil</div><div class="bind">Energy</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(90,255,150,.12);color:#5aff96"><img src="https://www.google.com/s2/favicons?domain=nayaraenergy.com&sz=64" alt="Nayara Energy" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">NE</span></div><div><div class="bname">Nayara Energy</div><div class="bind">Energy</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(180,90,255,.12);color:#b45aff"><img src="https://www.google.com/s2/favicons?domain=roff.in&sz=64" alt="Roff" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">RF</span></div><div><div class="bname">Roff</div><div class="bind">Consumer</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(0,200,232,.12);color:#00c8e8"><img src="https://www.google.com/s2/favicons?domain=ultratechcement.com&sz=64" alt="UltraTech Cement" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">UT</span></div><div><div class="bname">UltraTech Cement</div><div class="bind">Cement</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(244,114,182,.12);color:#f472b6"><img src="https://www.google.com/s2/favicons?domain=birlawhite.com&sz=64" alt="Birla White" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">BW</span></div><div><div class="bname">Birla White</div><div class="bind">Building Products</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(255,90,90,.12);color:#ff5a5a"><img src="https://www.google.com/s2/favicons?domain=asianpaints.com&sz=64" alt="Asian Paints" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">AP</span></div><div><div class="bname">Asian Paints</div><div class="bind">Paints</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(90,200,255,.12);color:#5ac8ff"><img src="https://www.google.com/s2/favicons?domain=nerolac.com&sz=64" alt="Nerolac Paints" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">NP</span></div><div><div class="bname">Nerolac Paints</div><div class="bind">Paints</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(212,168,67,.15);color:#d4a843"><img src="https://www.google.com/s2/favicons?domain=nipponpaint.co.in&sz=64" alt="Nippon Paints" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">NP</span></div><div><div class="bname">Nippon Paints</div><div class="bind">Paints</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(90,255,150,.12);color:#5aff96"><img src="https://www.google.com/s2/favicons?domain=asrsteels.com&sz=64" alt="ASR Steels" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">AS</span></div><div><div class="bname">ASR Steels</div><div class="bind">Steel</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(255,90,90,.12);color:#ff5a5a"><img src="https://www.google.com/s2/favicons?domain=colgate.com&sz=64" alt="Colgate" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">CG</span></div><div><div class="bname">Colgate</div><div class="bind">FMCG</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(90,200,255,.12);color:#5ac8ff"><img src="https://www.google.com/s2/favicons?domain=nimyle.com&sz=64" alt="Nimyle" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">NY</span></div><div><div class="bname">Nimyle</div><div class="bind">School Activity</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(212,168,67,.15);color:#d4a843"><img src="https://www.google.com/s2/favicons?domain=boroline.com&sz=64" alt="Boroline" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">BR</span></div><div><div class="bname">Boroline</div><div class="bind">Roadshow</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(180,90,255,.12);color:#b45aff"><img src="https://ui-avatars.com/api/?name=Government&size=76&background=b45aff&color=fff" alt="Government" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">Gov</span></div><div><div class="bname">Government</div><div class="bind">Bus Branding</div></div></div>
+      <!-- Duplicate set for seamless scroll -->
+      <div class="bpill"><div class="bava" style="background:rgba(255,90,90,.12);color:#ff5a5a"><img src="https://www.google.com/s2/favicons?domain=reliancetrends.com&sz=64" alt="Reliance Trends" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">RT</span></div><div><div class="bname">Reliance Trends</div><div class="bind">Retail</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(74,155,111,.15);color:#2d7a4f"><img src="https://ui-avatars.com/api/?name=Arokya+Milk&size=76&background=2d7a4f&color=fff" alt="Arokya Milk" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">AR</span></div><div><div class="bname">Arokya</div><div class="bind">Dairy</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(212,168,67,.15);color:#d4a843"><img src="https://www.google.com/s2/favicons?domain=apollotyres.com&sz=64" alt="Apollo Tyres" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">AT</span></div><div><div class="bname">Apollo Tyres</div><div class="bind">Automotive</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(90,255,150,.12);color:#5aff96"><img src="https://www.google.com/s2/favicons?domain=apollopharmacy.in&sz=64" alt="Apollo Pharmacy" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">AP</span></div><div><div class="bname">Apollo Pharmacy</div><div class="bind">Healthcare</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(180,90,255,.12);color:#b45aff"><img src="https://www.google.com/s2/favicons?domain=campacola.in&sz=64" alt="Campa Cola" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">CC</span></div><div><div class="bname">Campa Cola</div><div class="bind">Beverages</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(0,200,232,.12);color:#00c8e8"><img src="https://www.google.com/s2/favicons?domain=shyamsteel.com&sz=64" alt="Shyam Steel" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">SS</span></div><div><div class="bname">Shyam Steel</div><div class="bind">Steel</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(244,114,182,.12);color:#f472b6"><img src="https://www.google.com/s2/favicons?domain=jsw.in&sz=64" alt="JSW Steel" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">JS</span></div><div><div class="bname">JSW Steel</div><div class="bind">Steel</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(255,90,90,.12);color:#ff5a5a"><img src="https://www.google.com/s2/favicons?domain=duroflex.com&sz=64" alt="Duroflex" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">DU</span></div><div><div class="bname">Duroflex</div><div class="bind">Sleep Solutions</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(90,200,255,.12);color:#5ac8ff"><img src="https://ui-avatars.com/api/?name=Jersey+Milk&size=76&background=5ac8ff&color=fff" alt="Jersey Milk" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">JM</span></div><div><div class="bname">Jersey Milk</div><div class="bind">Dairy</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(212,168,67,.15);color:#d4a843"><img src="https://www.google.com/s2/favicons?domain=heritagemilk.com&sz=64" alt="Heritage Milk" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">HM</span></div><div><div class="bname">Heritage Milk</div><div class="bind">Dairy</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(90,255,150,.12);color:#2e8b57"><img src="https://ui-avatars.com/api/?name=Thirumala+Milk&size=76&background=2e8b57&color=fff" alt="Thirumala Milk" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">TM</span></div><div><div class="bname">Thirumala Milk</div><div class="bind">Dairy</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(180,90,255,.12);color:#b45aff"><img src="https://www.google.com/s2/favicons?domain=rblbank.com&sz=64" alt="RBL Bank" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">RB</span></div><div><div class="bname">RBL Bank</div><div class="bind">Banking</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(0,200,232,.12);color:#00c8e8"><img src="https://www.google.com/s2/favicons?domain=icicibank.com&sz=64" alt="ICICI Bank" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">IC</span></div><div><div class="bname">ICICI Bank</div><div class="bind">Banking</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(244,114,182,.12);color:#f472b6"><img src="https://www.google.com/s2/favicons?domain=varunbeverages.com&sz=64" alt="Varun Beverages" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">VB</span></div><div><div class="bname">Varun Beverages</div><div class="bind">Beverages</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(255,90,90,.12);color:#ff5a5a"><img src="https://ui-avatars.com/api/?name=Mercelys+Ice+Cream&size=76&background=ff5a5a&color=fff" alt="Mercelys Ice Cream" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">MC</span></div><div><div class="bname">Mercelys Ice Cream</div><div class="bind">F&amp;B</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(90,200,255,.12);color:#5ac8ff"><img src="https://www.google.com/s2/favicons?domain=paytm.com&sz=64" alt="Paytm" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">PT</span></div><div><div class="bname">Paytm</div><div class="bind">Fintech</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(212,168,67,.15);color:#d4a843"><img src="https://www.google.com/s2/favicons?domain=iocl.com&sz=64" alt="Indian Oil" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">IO</span></div><div><div class="bname">Indian Oil</div><div class="bind">Energy</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(90,255,150,.12);color:#5aff96"><img src="https://www.google.com/s2/favicons?domain=nayaraenergy.com&sz=64" alt="Nayara Energy" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">NE</span></div><div><div class="bname">Nayara Energy</div><div class="bind">Energy</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(180,90,255,.12);color:#b45aff"><img src="https://www.google.com/s2/favicons?domain=roff.in&sz=64" alt="Roff" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">RF</span></div><div><div class="bname">Roff</div><div class="bind">Consumer</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(0,200,232,.12);color:#00c8e8"><img src="https://www.google.com/s2/favicons?domain=ultratechcement.com&sz=64" alt="UltraTech Cement" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">UT</span></div><div><div class="bname">UltraTech Cement</div><div class="bind">Cement</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(244,114,182,.12);color:#f472b6"><img src="https://www.google.com/s2/favicons?domain=birlawhite.com&sz=64" alt="Birla White" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">BW</span></div><div><div class="bname">Birla White</div><div class="bind">Building Products</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(255,90,90,.12);color:#ff5a5a"><img src="https://www.google.com/s2/favicons?domain=asianpaints.com&sz=64" alt="Asian Paints" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">AP</span></div><div><div class="bname">Asian Paints</div><div class="bind">Paints</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(90,200,255,.12);color:#5ac8ff"><img src="https://www.google.com/s2/favicons?domain=nerolac.com&sz=64" alt="Nerolac Paints" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">NP</span></div><div><div class="bname">Nerolac Paints</div><div class="bind">Paints</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(212,168,67,.15);color:#d4a843"><img src="https://www.google.com/s2/favicons?domain=nipponpaint.co.in&sz=64" alt="Nippon Paints" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">NP</span></div><div><div class="bname">Nippon Paints</div><div class="bind">Paints</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(90,255,150,.12);color:#5aff96"><img src="https://www.google.com/s2/favicons?domain=asrsteels.com&sz=64" alt="ASR Steels" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">AS</span></div><div><div class="bname">ASR Steels</div><div class="bind">Steel</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(255,90,90,.12);color:#ff5a5a"><img src="https://www.google.com/s2/favicons?domain=colgate.com&sz=64" alt="Colgate" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">CG</span></div><div><div class="bname">Colgate</div><div class="bind">FMCG</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(90,200,255,.12);color:#5ac8ff"><img src="https://www.google.com/s2/favicons?domain=nimyle.com&sz=64" alt="Nimyle" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">NY</span></div><div><div class="bname">Nimyle</div><div class="bind">School Activity</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(212,168,67,.15);color:#d4a843"><img src="https://www.google.com/s2/favicons?domain=boroline.com&sz=64" alt="Boroline" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">BR</span></div><div><div class="bname">Boroline</div><div class="bind">Roadshow</div></div></div>
+      <div class="bpill"><div class="bava" style="background:rgba(180,90,255,.12);color:#b45aff"><img src="https://ui-avatars.com/api/?name=Government&size=76&background=b45aff&color=fff" alt="Government" data-loaded="false" onload="this.dataset.loaded='true'" onerror="this.style.display='none'"><span class="bava-initials">Gov</span></div><div><div class="bname">Government</div><div class="bind">Bus Branding</div></div></div>
     </div>
   </div>
 
-  <!-- TESTIMONIALS -->
-  <section class="sec">
-    <div class="sw">
-      <div style="text-align:center">
-        <span class="slbl rv" style="justify-content:center">Client Voices</span>
-        <h2 class="stitle rv" style="text-align:center">Words from the brands<br>we made unmissable</h2>
-      </div>
-      <div class="tgrid">
-        <div class="tc rv"><div class="tstars">★★★★★</div><p class="tq">"South Ads executed our outdoor campaign flawlessly across 12 cities. The hoarding placements were strategic and the brand visibility we gained was extraordinary."</p><div class="tauth"><div class="tava" style="background:rgba(255,92,0,.12);color:var(--orange)">RK</div><div><div class="tname">Ramesh Kumar</div><div class="trole">VP Marketing, Aroma Kitchen</div></div></div><div class="tbg">★</div></div>
-        <div class="tc feat rv d1"><div class="tstars">★★★★★</div><p class="tq">"The brand activation event they organised drew 4,000+ attendees. Attention to detail and on-ground energy was exceptional. Truly a world-class advertising partner."</p><div class="tauth"><div class="tava" style="background:rgba(159,217,48,.15);color:var(--lime)">PN</div><div><div class="tname">Priya Nair</div><div class="trole">Brand Director, Nova Electronics</div></div></div><div class="tbg">★</div></div>
-        <div class="tc rv d2"><div class="tstars">★★★★★</div><p class="tq">"Their 360° campaign — combining transit media, mall activations, and digital OOH — gave us complete market saturation. South Ads is simply the best in the business."</p><div class="tauth"><div class="tava" style="background:rgba(106,31,255,.12);color:var(--purple)">AS</div><div><div class="tname">Arun Selvam</div><div class="trole">CEO, Zenith Realty</div></div></div><div class="tbg">★</div></div>
-      </div>
-    </div>
-  </section>
 
   <!-- CTA -->
   <div class="cstrip">
@@ -426,17 +460,19 @@ footer{background:var(--dark);padding:4rem 5% 2rem}
     <p class="ssub rv">From a single hoarding to a nationwide 360° campaign — we have the resources, reach, and expertise to deliver.</p>
   </div>
   <div class="bento">
-    <div class="bc c1 rv"><div class="cnum">01</div><div class="cico" style="background:rgba(255,92,0,.1)">🏙️</div><div class="cname">Outdoor Advertising</div><div class="cdesc">Hoardings, billboards, unipoles, bridge panels, and large-format displays strategically placed in high-traffic zones to create maximum brand impressions across markets of any scale.</div><div class="ctag" style="background:rgba(255,92,0,.1);color:var(--orange)">OOH Media</div><div class="bignum">01</div></div>
-    <div class="bc c2 rv d1"><div class="cnum">02</div><div class="cico" style="background:rgba(232,48,106,.1)">🎯</div><div class="cname">Brand Activation</div><div class="cdesc">Experiential programs — mall activations, society programmes, market storms, and interactive touchpoints that convert attention into brand loyalty.</div><div class="ctag" style="background:rgba(232,48,106,.1);color:var(--pink)">BTL</div></div>
-    <div class="bc c3 rv d2"><div class="cnum">03</div><div class="cico" style="background:rgba(106,31,255,.1)">🎪</div><div class="cname">Event Management</div><div class="cdesc">End-to-end solutions: product launches, trade shows, road shows — conceptualised and executed with precision.</div><div class="ctag" style="background:rgba(106,31,255,.1);color:var(--purple)">Events</div></div>
-    <div class="bc c4 rv"><div class="cnum">04</div><div class="cico" style="background:rgba(0,200,232,.1)">📣</div><div class="cname">Integrated Promotion Campaigns</div><div class="cdesc">ATL and BTL strategies working in concert — TV, print, digital OOH, radio, and on-ground promotions designed to dominate every consumer touchpoint your brand has across all key markets.</div><div class="ctag" style="background:rgba(0,200,232,.1);color:var(--cyan)">360°</div></div>
-    <div class="bc c5 rv d1"><div class="cnum">05</div><div class="cico" style="background:rgba(159,217,48,.12)">🚌</div><div class="cname">Transit &amp; Mobile Media</div><div class="cdesc">Bus wraps, auto branding, metro panels, and mobile vans that carry your message through the streets — reaching audiences on the move.</div><div class="ctag" style="background:rgba(159,217,48,.12);color:#6aad00">Transit</div></div>
+    <div class="bc c1 rv"><div class="cnum">01</div><div class="cico" style="background:rgba(255,92,0,.1)">🖨️</div><div class="cname">Printing &amp; Roll to Roll</div><div class="cdesc">UV Roll to Roll, HP Latex 570, EVO Solvent, and Konica 512i Solvent machines. Vinyl printing, fabric printing, one-way vision, translate printing, and flex printing for campaigns that stand out.</div><div class="ctag" style="background:rgba(255,92,0,.1);color:var(--orange)">Print</div><div class="bignum">01</div></div>
+    <div class="bc c2 rv d1"><div class="cnum">02</div><div class="cico" style="background:rgba(232,48,106,.1)">🏭</div><div class="cname">Fabrication Factory</div><div class="cdesc">ACP board, non-light board, glow sign board, ACP standee, floor-standing product display rack, wall painting, and 3D LED product display / standee — built for impact.</div><div class="ctag" style="background:rgba(232,48,106,.1);color:var(--pink)">Fabrication</div></div>
+    <div class="bc c3 rv d2"><div class="cnum">03</div><div class="cico" style="background:rgba(106,31,255,.1)">🏙️</div><div class="cname">Outdoor Advertising</div><div class="cdesc">Hoardings, billboards, unipoles, bridge panels, and large-format displays in high-traffic zones for maximum brand impressions.</div><div class="ctag" style="background:rgba(106,31,255,.1);color:var(--purple)">OOH</div></div>
+    <div class="bc c4 rv"><div class="cnum">04</div><div class="cico" style="background:rgba(0,200,232,.1)">📣</div><div class="cname">Promotions</div><div class="cdesc">Home-to-home activity, school activity, roadshow advertising, and auto advertising — on-ground campaigns that reach consumers where they live, learn, and travel. ATL and BTL working in concert.</div><div class="ctag" style="background:rgba(0,200,232,.1);color:var(--cyan)">360°</div></div>
+    <div class="bc c5 rv d1"><div class="cnum">05</div><div class="cico" style="background:rgba(159,217,48,.12)">🚌</div><div class="cname">Transit &amp; Bus Branding</div><div class="cdesc">Bus branding for government and brands, auto branding, bus wraps, metro panels, and mobile vans — your message on the move.</div><div class="ctag" style="background:rgba(159,217,48,.12);color:#6aad00">Transit</div></div>
     <div class="bc c6 rv"><div class="cnum">06</div><div class="cico" style="background:rgba(255,200,0,.1)">🏪</div><div class="cname">Retail &amp; In-Shop Branding</div><div class="cdesc">POS materials, shop fascia, shelf branding, window graphics, and in-store displays that influence the final buying decision.</div></div>
-    <div class="bc c7 rv d1"><div class="cnum">07</div><div class="cico" style="background:rgba(255,92,0,.1)">💡</div><div class="cname">LED &amp; Digital Signage</div><div class="cdesc">High-impact LED hoardings, digital display boards, ACP signage, acrylic and neon signs designed for maximum visibility and durability.</div></div>
+    <div class="bc c7 rv d1"><div class="cnum">07</div><div class="cico" style="background:rgba(255,92,0,.1)">💡</div><div class="cname">LED &amp; Digital Signage</div><div class="cdesc">3D LED product display / standee, LED hoardings, digital display boards, ACP signage, acrylic and neon signs for maximum visibility.</div></div>
     <div class="bc c8 rv d2"><div class="cnum">08</div><div class="cico" style="background:rgba(232,48,106,.1)">🎨</div><div class="cname">Creative &amp; Design Studio</div><div class="cdesc">In-house creative team handling campaign concepts, visual identity, artwork production, and media adaptations.</div></div>
-    <div class="bc c9 rv"><div class="cnum">09</div><div class="cico" style="background:rgba(106,31,255,.1)">📊</div><div class="cname">Media Planning &amp; Buying</div><div class="cdesc">Strategic planning across OOH, print, radio, and ambient channels. We identify the right media mix to maximise reach, frequency, and ROI — negotiating the best rates across pan-India media networks for clients of all sizes.</div></div>
-    <div class="bc c10 rv d1"><div class="cnum">10</div><div class="cico" style="background:rgba(0,200,232,.1)">🤝</div><div class="cname">Corporate Branding &amp; Identity</div><div class="cdesc">From logo and visual identity to office signage, vehicle branding, uniforms, and stationery — cohesive brand environments that communicate professionalism at every touchpoint.</div></div>
-    <div class="bc c11 rv d2" style="background:var(--orange);border-color:transparent"><div class="cico" style="background:rgba(255,255,255,.2)">💬</div><div class="cname" style="color:#fff">Not sure where to start?</div><div class="cdesc" style="color:rgba(255,255,255,.75)">Book a free strategy consultation. We'll map the right campaign for your brand.</div><a href="#" onclick="go('contact',event)" style="display:inline-block;margin-top:1.1rem;background:#fff;color:var(--orange);font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:.78rem;padding:.55rem 1.3rem;border-radius:100px;text-decoration:none">Book a Call →</a></div>
+    <div class="bc c9 rv"><div class="cnum">09</div><div class="cico" style="background:rgba(106,31,255,.1)">🎯</div><div class="cname">Brand Activation</div><div class="cdesc">Experiential programmes — mall activations, society programmes, market storms, and interactive touchpoints that convert attention into brand loyalty.</div></div>
+    <div class="bc c10 rv d1"><div class="cnum">10</div><div class="cico" style="background:rgba(0,200,232,.1)">🎪</div><div class="cname">Event Management</div><div class="cdesc">End-to-end solutions: product launches, trade shows, road shows — conceptualised and executed with precision.</div></div>
+    <div class="bc c11 rv d2"><div class="cnum">11</div><div class="cico" style="background:rgba(159,217,48,.12)">📊</div><div class="cname">Media Planning &amp; Buying</div><div class="cdesc">Strategic planning across OOH, print, radio, and ambient channels — the right media mix and best rates across pan-India networks.</div></div>
+    <div class="bc c12 rv"><div class="cnum">12</div><div class="cico" style="background:rgba(106,31,255,.1)">🤝</div><div class="cname">Corporate Branding &amp; Identity</div><div class="cdesc">Logo, visual identity, office signage, vehicle branding, uniforms, and stationery — cohesive brand environments at every touchpoint.</div></div>
+    <div class="bc c13 rv d1" style="background:var(--orange);border-color:transparent"><div class="cico" style="background:rgba(255,255,255,.2)">💬</div><div class="cname" style="color:#fff">Not sure where to start?</div><div class="cdesc" style="color:rgba(255,255,255,.75)">Book a free strategy consultation. We'll map the right campaign for your brand.</div><a href="#" onclick="go('contact',event)" style="display:inline-block;margin-top:1.1rem;background:#fff;color:var(--orange);font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:.78rem;padding:.55rem 1.3rem;border-radius:100px;text-decoration:none">Book a Call →</a></div>
   </div>
 </div>
 </section>
@@ -449,73 +485,101 @@ footer{background:var(--dark);padding:4rem 5% 2rem}
   <div class="rv" style="margin-bottom:2rem"><span class="slbl">Our Work</span><h2 class="stitle">Campaigns that<br>commanded attention</h2></div>
   <div class="wfilter rv">
     <button class="fb on" onclick="fw('all',this)">All</button>
-    <button class="fb" onclick="fw('ooh',this)">Outdoor</button>
+    <button class="fb" onclick="fw('promo',this)">Promotions</button>
+    <button class="fb" onclick="fw('transit',this)">Bus &amp; Transit</button>
     <button class="fb" onclick="fw('activation',this)">Brand Activation</button>
     <button class="fb" onclick="fw('event',this)">Events</button>
-    <button class="fb" onclick="fw('transit',this)">Transit Media</button>
   </div>
   <div class="wgrid" id="wg">
-    <div class="wc wbig rv" data-cat="ooh">
+    <div class="wc wbig rv" data-cat="promo">
       <div class="wbg vw1">
         <div class="mpwrap" style="flex-direction:column;gap:1rem;padding:2rem">
           <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,92,0,.15);border-radius:12px;padding:1.5rem;width:82%;text-align:center">
-            <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:1.4rem;font-weight:900;color:rgba(255,140,66,.9);line-height:1">AROMA<br>KITCHEN</div>
+            <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:1.4rem;font-weight:900;color:rgba(255,140,66,.9);line-height:1">COLGATE</div>
             <div style="height:1px;background:rgba(255,255,255,.08);margin:.7rem 0"></div>
-            <div style="font-size:.58rem;color:rgba(255,255,255,.3);letter-spacing:.15em;text-transform:uppercase">Hoarding Campaign · Chennai</div>
+            <div style="font-size:.58rem;color:rgba(255,255,255,.3);letter-spacing:.15em;text-transform:uppercase">Home to Home Activity</div>
           </div>
-          <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:.72rem;font-weight:800;color:var(--lime);letter-spacing:.05em">12 Hoardings · 3 Cities</div>
+          <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:.72rem;font-weight:800;color:var(--lime);letter-spacing:.05em">Promotions · FMCG</div>
         </div>
       </div>
       <div class="wov"></div><div class="warr">↗</div>
-      <span class="rbadge">3 Cities</span>
-      <div class="winfo"><div class="wcat">Outdoor Advertising Campaign</div><div class="wname">Aroma Kitchen — City-Wide Hoarding Blitz</div><div class="wmeta">12 prime hoardings across Chennai, Coimbatore &amp; Madurai</div></div>
+      <span class="rbadge">FMCG</span>
+      <div class="winfo"><div class="wcat">Promotions</div><div class="wname">Colgate — Home to Home Activity</div><div class="wmeta">On-ground home-to-home promotion campaign</div></div>
     </div>
-    <div class="wc wsm rv d1" data-cat="activation">
+    <div class="wc wsm rv d1" data-cat="promo">
       <div class="wbg vw2">
         <div class="mpwrap" style="flex-direction:column;gap:.8rem">
           <div style="background:rgba(255,255,255,.06);border:1px solid rgba(106,31,255,.2);border-radius:12px;padding:1.2rem;width:185px">
-            <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:.8rem;font-weight:900;color:rgba(180,90,255,.9);margin-bottom:.4rem">NOVA LAUNCH</div>
-            <div style="font-size:.62rem;color:rgba(255,255,255,.3);line-height:1.5">Brand Activation · Phoenix Mall</div>
-            <div style="margin-top:.7rem;background:rgba(106,31,255,.2);color:#b45aff;font-size:.62rem;font-weight:700;padding:.22rem .7rem;border-radius:100px;display:inline-block">4,000+ Footfall</div>
+            <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:.8rem;font-weight:900;color:rgba(180,90,255,.9);margin-bottom:.4rem">NIMYLE</div>
+            <div style="font-size:.62rem;color:rgba(255,255,255,.3);line-height:1.5">School Activity Project</div>
+            <div style="margin-top:.7rem;background:rgba(106,31,255,.2);color:#b45aff;font-size:.62rem;font-weight:700;padding:.22rem .7rem;border-radius:100px;display:inline-block">Education</div>
           </div>
-          <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:.68rem;font-weight:800;color:var(--lime);letter-spacing:.04em">₹2Cr media value generated</div>
+          <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:.68rem;font-weight:800;color:var(--lime);letter-spacing:.04em">School Activity</div>
         </div>
       </div>
       <div class="wov"></div><div class="warr">↗</div>
-      <span class="rbadge">4,000+ Footfall</span>
-      <div class="winfo"><div class="wcat">Brand Activation</div><div class="wname">Nova Electronics — Product Launch Activation</div><div class="wmeta">Mall activation · 4,000+ consumer touchpoints</div></div>
+      <span class="rbadge">School</span>
+      <div class="winfo"><div class="wcat">Promotions</div><div class="wname">Nimyle — School Activity</div><div class="wmeta">School activity project · brand engagement</div></div>
     </div>
-    <div class="wc wmid rv" data-cat="transit">
+    <div class="wc wmid rv" data-cat="promo">
       <div class="wbg vw3">
         <div class="mpwrap" style="flex-direction:column;gap:1rem">
           <div style="background:rgba(255,255,255,.05);border:1px solid rgba(106,31,255,.2);border-radius:10px;padding:1rem;width:88%;max-width:230px">
-            <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:.9rem;font-weight:900;color:rgba(180,90,255,.9)">ZENITH REALTY</div>
-            <div style="font-size:.58rem;color:rgba(255,255,255,.25);letter-spacing:.1em;text-transform:uppercase;margin:.3rem 0 .6rem">Transit Media Campaign</div>
+            <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:.9rem;font-weight:900;color:rgba(180,90,255,.9)">BOROLINE</div>
+            <div style="font-size:.58rem;color:rgba(255,255,255,.25);letter-spacing:.1em;text-transform:uppercase;margin:.3rem 0 .6rem">Roadshow Advertising</div>
             <div style="display:flex;gap:.4rem">
               <div style="flex:1;height:22px;border-radius:5px;background:rgba(106,31,255,.12);border:1px solid rgba(106,31,255,.2)"></div>
               <div style="flex:1;height:22px;border-radius:5px;background:rgba(106,31,255,.25);border:1px solid rgba(106,31,255,.4)"></div>
             </div>
           </div>
-          <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:.68rem;font-weight:800;color:var(--lime);letter-spacing:.04em">200 Buses · 60 Days</div>
+          <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:.68rem;font-weight:800;color:var(--lime);letter-spacing:.04em">Roadshow · On-ground</div>
         </div>
       </div>
       <div class="wov"></div><div class="warr">↗</div>
-      <div class="winfo"><div class="wcat">Transit Media</div><div class="wname">Zenith Realty — Bus Wrap Campaign</div><div class="wmeta">200 TNSTC buses · Chennai · 60-day campaign</div></div>
+      <div class="winfo"><div class="wcat">Promotions</div><div class="wname">Boroline — Roadshow Advertising</div><div class="wmeta">Roadshow advertising project</div></div>
     </div>
-    <div class="wc wmid rv d1" data-cat="event">
+    <div class="wc wmid rv d1" data-cat="promo">
       <div class="wbg vw4">
         <div class="mpwrap" style="flex-direction:column;gap:.7rem;padding:1.5rem">
           <div style="width:90%;background:rgba(255,255,255,.04);border:1px solid rgba(159,217,48,.15);border-radius:10px;padding:1.1rem">
             <div style="height:4px;width:70%;background:rgba(159,217,48,.4);border-radius:2px;margin-bottom:6px"></div>
-            <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:.75rem;font-weight:800;color:rgba(159,217,48,.8)">GreenLeaf Trade Expo</div>
-            <div style="font-size:.6rem;color:rgba(255,255,255,.25);margin-top:.3rem">800 Trade Visitors · 45 Exhibitors</div>
+            <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:.75rem;font-weight:800;color:rgba(159,217,48,.8)">Nayara Energy</div>
+            <div style="font-size:.6rem;color:rgba(255,255,255,.25);margin-top:.3rem">Roadshow Advertising Project</div>
           </div>
-          <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:.68rem;font-weight:800;color:var(--lime);letter-spacing:.04em">2-Day Exhibition Event</div>
+          <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:.68rem;font-weight:800;color:var(--lime);letter-spacing:.04em">Roadshow</div>
         </div>
       </div>
       <div class="wov"></div><div class="warr">↗</div>
-      <span class="rbadge">800 Visitors</span>
-      <div class="winfo"><div class="wcat">Event Management</div><div class="wname">GreenLeaf Organics — Trade Exhibition</div><div class="wmeta">Full event production · 45 exhibitors · 2-day expo</div></div>
+      <span class="rbadge">Energy</span>
+      <div class="winfo"><div class="wcat">Promotions</div><div class="wname">Nayara Energy — Roadshow Advertising</div><div class="wmeta">Roadshow advertising project</div></div>
+    </div>
+    <div class="wc wmid rv" data-cat="transit">
+      <div class="wbg vw1">
+        <div class="mpwrap" style="flex-direction:column;gap:.7rem;padding:1.5rem">
+          <div style="width:90%;background:rgba(255,255,255,.04);border:1px solid rgba(255,92,0,.2);border-radius:10px;padding:1.1rem">
+            <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:.85rem;font-weight:800;color:rgba(255,140,66,.9)">Bus Branding</div>
+            <div style="font-size:.6rem;color:rgba(255,255,255,.25);margin-top:.3rem">For Government</div>
+          </div>
+          <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:.68rem;font-weight:800;color:var(--lime);letter-spacing:.04em">Transit · Government</div>
+        </div>
+      </div>
+      <div class="wov"></div><div class="warr">↗</div>
+      <span class="rbadge">Govt</span>
+      <div class="winfo"><div class="wcat">Transit &amp; Bus Branding</div><div class="wname">Bus Branding for Government</div><div class="wmeta">Government bus branding project</div></div>
+    </div>
+    <div class="wc wmid rv d1" data-cat="promo">
+      <div class="wbg vw2">
+        <div class="mpwrap" style="flex-direction:column;gap:.7rem;padding:1.5rem">
+          <div style="width:90%;background:rgba(255,255,255,.04);border:1px solid rgba(106,31,255,.2);border-radius:10px;padding:1.1rem">
+            <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:.85rem;font-weight:800;color:rgba(180,90,255,.9)">Auto Advertising</div>
+            <div style="font-size:.6rem;color:rgba(255,255,255,.25);margin-top:.3rem">On-ground · Transit</div>
+          </div>
+          <div style="font-family:'Cabinet Grotesk',sans-serif;font-size:.68rem;font-weight:800;color:var(--lime);letter-spacing:.04em">Promotions</div>
+        </div>
+      </div>
+      <div class="wov"></div><div class="warr">↗</div>
+      <span class="rbadge">Auto</span>
+      <div class="winfo"><div class="wcat">Promotions</div><div class="wname">Auto Advertising</div><div class="wmeta">Auto advertising campaigns</div></div>
     </div>
   </div>
 </div>
@@ -579,13 +643,18 @@ footer{background:var(--dark);padding:4rem 5% 2rem}
           <li style="display:flex;align-items:center;gap:.7rem;font-size:.87rem;color:var(--muted)"><span style="width:6px;height:6px;border-radius:50%;background:var(--lime);flex-shrink:0;display:block"></span>Pan-India execution capability</li>
         </ul>
         <div style="margin-top:2.5rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.07)">
-          <div style="font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:.5rem">Email us directly</div>
-          <a href="/cdn-cgi/l/email-protection#b8d0ddd4d4d7f8cbd7cdccd0d9dccb96dbd7d5" style="color:var(--orange);text-decoration:none;font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:1.1rem"><span class="__cf_email__" data-cfemail="deb6bbb2b2b19eadb1abaab6bfbaadf0bdb1b3">[email&#160;protected]</span></a>
+          <div style="font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:.5rem">Or email us</div>
+          <a href="mailto:southads06@gmail.com" style="color:var(--orange);text-decoration:none;font-family:'Cabinet Grotesk',sans-serif;font-weight:900;font-size:1.1rem">southads06@gmail.com</a>
         </div>
         <div style="margin-top:1.2rem">
-          <div style="font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:.4rem">Headquartered in</div>
-          <div style="color:var(--muted);font-size:.88rem">📍 Chennai, Tamil Nadu · Pan-India Operations</div>
+          <div style="font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:.4rem">Find us at</div>
+          <div style="color:var(--muted);font-size:.88rem;line-height:1.6">📍 No. 44/45, Anna Industrial Estate, Vanagaram, Chennai - 600095</div>
+          <div style="color:rgba(255,255,255,.25);font-size:.8rem;margin-top:.35rem">Pan-India Operations</div>
         </div>
+        <a href="https://www.google.com/maps?q=13.0464221,80.1573363" target="_blank" rel="noopener" class="map-box" title="Open location in Google Maps">
+          <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=80.152%2C13.042%2C80.162%2C13.050&layer=mapnik&marker=13.0464221%2C80.1573363" title="South Ads location"></iframe>
+          <span class="map-label">Click to open in Google Maps</span>
+        </a>
       </div>
       <div>
         <div class="wa-card">
@@ -602,7 +671,7 @@ footer{background:var(--dark);padding:4rem 5% 2rem}
               <div class="wa-time">South Ads · now</div>
             </div>
           </div>
-          <a class="wa-btn" href="https://wa.me/916380806930?text=Hi%20South%20Ads!%20I%27m%20interested%20in%20your%20advertising%20services." target="_blank" rel="noopener">
+          <a class="wa-btn" href="https://wa.me/918870202610?text=Hi%20South%20Ads!%20I%27m%20interested%20in%20your%20advertising%20services." target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             Chat on WhatsApp
           </a>
@@ -617,7 +686,7 @@ footer{background:var(--dark);padding:4rem 5% 2rem}
 <!-- FLOATING WHATSAPP BUTTON -->
 <div class="wa-float">
   <span class="wa-float-tooltip">Chat with us on WhatsApp</span>
-  <a class="wa-float-btn" href="https://wa.me/916380806930?text=Hi%20South%20Ads!%20I%27m%20interested%20in%20your%20advertising%20services." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <a class="wa-float-btn" href="https://wa.me/918870202610?text=Hi%20South%20Ads!%20I%27m%20interested%20in%20your%20advertising%20services." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
     <span class="wa-float-pulse"></span>
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
@@ -630,11 +699,11 @@ footer{background:var(--dark);padding:4rem 5% 2rem}
       <div>
         <a class="flogo" href="#" onclick="go('home',event)">South<b>Ads</b></a>
         <p class="ftag">India's trusted 360° advertising company. From outdoor hoardings to brand activations — we make your brand impossible to ignore.</p>
-        <div style="margin-top:1.2rem;font-size:.76rem;color:rgba(255,255,255,.2)">📍 Chennai, Tamil Nadu · Pan-India Operations</div>
+        <div style="margin-top:1.2rem;font-size:.76rem;color:rgba(255,255,255,.2);line-height:1.5">📍 No. 44/45, Anna Industrial Estate, Vanagaram, Chennai - 600095 · Pan-India Operations</div>
       </div>
       <div class="fcol"><h4>Navigate</h4><a href="#" onclick="go('home',event)">Home</a><a href="#" onclick="go('services',event)">Services</a><a href="#" onclick="go('works',event)">Our Work</a><a href="#" onclick="go('about',event)">About Us</a><a href="#" onclick="go('contact',event)">Contact</a></div>
-      <div class="fcol"><h4>Services</h4><a href="#" onclick="go('services',event)">Outdoor Advertising</a><a href="#" onclick="go('services',event)">Brand Activation</a><a href="#" onclick="go('services',event)">Event Management</a><a href="#" onclick="go('services',event)">Transit Media</a><a href="#" onclick="go('services',event)">Media Planning</a></div>
-      <div class="fcol"><h4>Connect</h4><a href="/cdn-cgi/l/email-protection#0b636e6767644b78647e7f636a6f7825686466"><span class="__cf_email__" data-cfemail="90f8f5fcfcffd0e3ffe5e4f8f1f4e3bef3fffd">[email&#160;protected]</span></a><a href="https://wa.me/916380806930" target="_blank" rel="noopener">+91 63808 06930 (WhatsApp)</a></div>
+      <div class="fcol"><h4>Services</h4><a href="#" onclick="go('services',event)">Printing &amp; Roll to Roll</a><a href="#" onclick="go('services',event)">Fabrication</a><a href="#" onclick="go('services',event)">Promotions</a><a href="#" onclick="go('services',event)">Bus Branding</a><a href="#" onclick="go('services',event)">Outdoor &amp; Events</a></div>
+      <div class="fcol"><h4>Connect</h4><a href="mailto:southads06@gmail.com">southads06@gmail.com</a><a href="https://wa.me/918870202610" target="_blank" rel="noopener">+91 88702 02610 (WhatsApp)</a></div>
     </div>
     <div class="fbot"><span>© 2025 South Ads. All rights reserved. | India's Premier Advertising Company</span><span>Made with 🔥 in Chennai</span></div>
   </div>
